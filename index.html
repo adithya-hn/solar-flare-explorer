@@ -585,6 +585,43 @@ function loadFile(file){
 function showErr(msg){document.getElementById('uerr').innerHTML=`<div class="errmsg">${msg}</div>`;}
 
 const dz=document.getElementById('dz'),fi=document.getElementById('fi');
+
+// Auto-load CSV from GitHub on startup
+fetch('SWPC_flare_catalogue.csv')
+  .then(r=>r.text())
+  .then(txt=>{
+    const parsed=parseCSV(txt);
+    if(!parsed)return;
+    let{headers,rows}=parsed;
+    let cm=detect(headers);
+    const ok=cm.date>=0||(cm.yr>=0&&cm.mo>=0&&cm.da>=0);
+    if(!ok&&rows.length){const cm2=detect(rows[0]);if(cm2.date>=0||(cm2.yr>=0&&cm2.mo>=0&&cm2.da>=0)){headers=rows[0];rows=rows.slice(1);cm=cm2;}}
+    const flares=[];
+    rows.forEach(row=>{
+      if(String(row[0]||'').startsWith(':'))return;
+      if(cm.type>=0){const t=String(row[cm.type]||'').toUpperCase().trim();if(t&&!['XRA','FLA',''].includes(t)&&!t.includes('X'))return;}
+      const date=parseDate(row,cm);if(!date)return;
+      const cr=cm.cls>=0?String(row[cm.cls]||'').trim():'';
+      const cls=getCls(cr);if(cls==='?'&&!cr)return;
+      const loc=cm.loc>=0?String(row[cm.loc]||'').trim():'';
+      const reg=cm.reg>=0?String(row[cm.reg]||'').replace(/^0+/,'').trim():'';
+      const start=cm.start>=0?fmtT(row[cm.start]):'--';
+      const peak=cm.peak>=0?fmtT(row[cm.peak]):'--';
+      const stop=cm.stop>=0?fmtT(row[cm.stop]):'--';
+      const ename=cm.ename>=0?String(row[cm.ename]||'').trim():'';
+      flares.push({date,cr,cls,loc,pl:parseLoc(loc),region:reg||'--',start,peak,stop,ename});
+    });
+    if(!flares.length)return;
+    flares.sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
+    document.getElementById('hsub').textContent=`SWPC_flare_catalogue.csv · ${flares.length.toLocaleString()} events`;
+    const dates=[...new Set(flares.map(f=>f.date))].sort();
+    Object.assign(S,{flares,selDate:dates[dates.length-1],fClass:'all',tab:'daily',modal:null,arView:null});
+    _c=null;
+    document.getElementById('upload').style.display='none';
+    document.getElementById('main').style.display='flex';
+    render();
+  })
+  .catch(()=>{}); // silently fail — user can still upload manually
 dz.addEventListener('click',()=>fi.click());
 dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('over');});
 dz.addEventListener('dragleave',()=>dz.classList.remove('over'));
