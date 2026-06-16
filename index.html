@@ -8,139 +8,236 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0f1117;--surf:#181d28;--surf2:#1d2233;
-  --bdr:#252b3a;--bdr2:#2e3649;
-  --txt:#dce6f5;--muted:#64748b;
+  --bg:#161a26;--surf:#1f2535;--surf2:#26304a;
+  --bdr:#303d58;--bdr2:#3c4d70;
+  --txt:#f0f4ff;--muted:#8090b0;
   --acc:#f97316;--acc2:#fbbf24;
   --mono:'Courier New','Menlo',monospace;
   --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
 }
-html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:14px;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:15px;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 button{cursor:pointer;font-family:inherit;transition:all .15s}
 select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
-::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:2px}
-#upload{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;gap:22px}
-.ut{text-align:center}.sun-icon{font-size:54px;filter:drop-shadow(0 0 22px rgba(249,115,22,.55))}
-.ut h1{font-size:29px;font-weight:700;color:var(--acc);margin-top:12px;letter-spacing:-1px}
-.ut p{color:var(--muted);font-family:var(--mono);font-size:11px;margin-top:5px;letter-spacing:1px}
-.dz{background:var(--surf);border:2px dashed var(--bdr2);border-radius:14px;padding:46px 30px;text-align:center;cursor:pointer;width:100%;max-width:440px;transition:all .2s}
-.dz:hover,.dz.over{border-color:var(--acc);background:rgba(249,115,22,.04)}
-.dz-icon{font-size:38px;opacity:.4;margin-bottom:12px}.dz h2{font-size:15px;font-weight:600}.dz p{color:var(--muted);font-size:12px;margin-top:5px}
-.hint{color:var(--muted);font-size:11px;font-family:var(--mono);text-align:center;max-width:380px;line-height:1.9;opacity:.7}
-.errmsg{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:#ef4444;padding:9px 16px;border-radius:8px;font-size:12px;margin-top:12px}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:3px}
+
+/* UPLOAD */
+#upload{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;gap:24px}
+.ut{text-align:center}.sun-icon{font-size:60px;filter:drop-shadow(0 0 24px rgba(249,115,22,.6))}
+.ut h1{font-size:32px;font-weight:700;color:var(--acc);margin-top:14px;letter-spacing:-1px}
+.ut p{color:var(--muted);font-family:var(--mono);font-size:12px;margin-top:6px;letter-spacing:1px}
+.dz{background:var(--surf);border:2px dashed var(--bdr2);border-radius:14px;padding:50px 36px;text-align:center;cursor:pointer;width:100%;max-width:460px;transition:all .2s}
+.dz:hover,.dz.over{border-color:var(--acc);background:rgba(249,115,22,.05)}
+.dz-icon{font-size:40px;opacity:.45;margin-bottom:14px}.dz h2{font-size:17px;font-weight:600}.dz p{color:var(--muted);font-size:13px;margin-top:6px}
+.hint{color:var(--muted);font-size:12px;font-family:var(--mono);text-align:center;max-width:400px;line-height:1.9;opacity:.75}
+.errmsg{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#ef4444;padding:10px 18px;border-radius:8px;font-size:13px;margin-top:12px}
+
+/* MAIN */
 #main{display:none;flex-direction:column;min-height:100vh}
-#hdr{background:var(--surf);border-bottom:1px solid var(--bdr);padding:11px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
-.htitle{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;-webkit-user-select:none;flex-shrink:0}
-.htitle:hover h1{color:var(--acc2)}.htitle h1{font-size:16px;font-weight:700;color:var(--acc);letter-spacing:-.5px;transition:color .15s}
-.hsub{font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:2px}
+
+/* HEADER */
+#hdr{background:var(--surf);border-bottom:1px solid var(--bdr);padding:13px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
+.htitle{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;-webkit-user-select:none;flex-shrink:0}
+.htitle:hover h1{color:var(--acc2)}.htitle h1{font-size:18px;font-weight:700;color:var(--acc);letter-spacing:-.5px;transition:color .15s}
+.hsub{font-size:11px;color:var(--muted);font-family:var(--mono);margin-top:2px}
 .hright{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:auto}
 .arsw{position:relative}
-.arsw input{background:var(--surf2);border:1px solid var(--bdr2);color:var(--txt);padding:7px 12px 7px 30px;border-radius:8px;font-size:12px;width:155px;outline:none;transition:border-color .15s}
+.arsw input{background:var(--surf2);border:1px solid var(--bdr2);color:var(--txt);padding:8px 14px 8px 32px;border-radius:9px;font-size:13px;width:165px;outline:none;transition:border-color .15s}
 .arsw input:focus{border-color:var(--acc)}.arsw input::placeholder{color:var(--muted)}
-.arsw .sico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:11px;pointer-events:none}
-#ardd{display:none;position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--surf);border:1px solid var(--bdr2);border-radius:9px;z-index:300;max-height:210px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.45)}
-.aro{padding:9px 13px;cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--txt);border-bottom:1px solid var(--bdr)}
-.aro:last-child{border-bottom:none}.aro:hover{background:var(--surf2);color:var(--acc2)}.oc{font-size:10px;color:var(--muted);margin-left:8px}
+.arsw .sico{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:12px;pointer-events:none}
+#ardd{display:none;position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--surf);border:1px solid var(--bdr2);border-radius:9px;z-index:300;max-height:220px;overflow-y:auto;box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.aro{padding:10px 14px;cursor:pointer;font-family:var(--mono);font-size:13px;color:var(--txt);border-bottom:1px solid var(--bdr)}
+.aro:last-child{border-bottom:none}.aro:hover{background:var(--surf2);color:var(--acc2)}.oc{font-size:11px;color:var(--muted);margin-left:8px}
+
+/* STATS BAR */
 #sbar{display:flex;overflow-x:auto;border-bottom:1px solid var(--bdr)}
-.sc{flex:0 0 auto;padding:8px 16px;border-right:1px solid var(--bdr)}
-.sl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono)}
-.sv{font-size:13px;font-weight:700;font-family:var(--mono);margin-top:2px;white-space:nowrap}
-#tabs{display:flex;gap:2px;padding:8px 20px 0;border-bottom:1px solid var(--bdr2);overflow-x:auto}
-.tb{padding:8px 16px;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;background:transparent;color:var(--muted);font-size:13px;white-space:nowrap;min-height:36px}
+.sc{flex:0 0 auto;padding:9px 18px;border-right:1px solid var(--bdr)}
+.sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono)}
+.sv{font-size:15px;font-weight:700;font-family:var(--mono);margin-top:2px;white-space:nowrap}
+
+/* TABS */
+#tabs{display:flex;gap:2px;padding:9px 22px 0;border-bottom:1px solid var(--bdr2);overflow-x:auto}
+.tb{padding:9px 18px;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;background:transparent;color:var(--muted);font-size:14px;white-space:nowrap;min-height:38px}
 .tb.on{background:var(--surf);color:var(--txt);border-color:var(--bdr2);font-weight:600;margin-bottom:-1px}
-#cnt{padding:18px;flex:1;max-width:1200px;width:100%;margin:0 auto}
-.card{background:var(--surf);border:1px solid var(--bdr);border-radius:12px;padding:16px 20px;margin-bottom:14px}
-.ctit{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-family:var(--mono);margin-bottom:13px}
-.ctit small{font-size:9px;opacity:.55;margin-left:6px;text-transform:none;letter-spacing:0;font-weight:400}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:680px){.g2{grid-template-columns:1fr}}.s2{grid-column:1/-1}
-.dt{width:100%;border-collapse:collapse;font-size:12px;font-family:var(--mono)}
-.dt th{padding:8px 11px;text-align:left;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--bdr2);font-weight:500;white-space:nowrap}
-.dt td{padding:9px 11px;border-bottom:1px solid rgba(37,43,58,.5);white-space:nowrap}
+
+/* CONTENT */
+#cnt{padding:20px;flex:1;max-width:1280px;width:100%;margin:0 auto}
+
+/* CARDS */
+.card{background:var(--surf);border:1px solid var(--bdr);border-radius:13px;padding:18px 22px;margin-bottom:16px}
+.ctit{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-family:var(--mono);margin-bottom:14px}
+.ctit small{font-size:10px;opacity:.55;margin-left:8px;text-transform:none;letter-spacing:0;font-weight:400}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.g2{grid-template-columns:1fr}}.s2{grid-column:1/-1}
+
+/* TABLE */
+.dt{width:100%;border-collapse:collapse;font-size:13px;font-family:var(--mono)}
+.dt th{padding:9px 13px;text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--bdr2);font-weight:500;white-space:nowrap}
+.dt td{padding:10px 13px;border-bottom:1px solid rgba(48,61,88,.5);white-space:nowrap}
 .dt .er{cursor:pointer}.dt .er:hover td{background:var(--surf2)}
-.dt tr:not(.er):hover td{background:rgba(29,34,51,.5)}.ox{overflow-x:auto}
-.cs{background:var(--surf2);border:1px solid var(--bdr2);color:var(--txt);padding:7px 12px;border-radius:8px;font-size:12px;min-height:36px;outline:none}
-.cb{background:transparent;border:1px solid var(--bdr2);color:var(--muted);padding:7px 13px;border-radius:8px;font-size:12px;min-height:36px}
-.cb:hover{border-color:var(--acc);color:var(--txt)}.cb.on{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.45);color:var(--acc)}
-#dnav{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px}
-.nbtn{width:42px;height:42px;background:var(--surf);border:1px solid var(--bdr2);border-radius:10px;color:var(--txt);font-size:20px;display:flex;align-items:center;justify-content:center}
+.dt tr:not(.er):hover td{background:rgba(38,48,74,.5)}.ox{overflow-x:auto}
+
+/* CONTROLS */
+.cs{background:var(--surf2);border:1px solid var(--bdr2);color:var(--txt);padding:8px 13px;border-radius:9px;font-size:13px;min-height:38px;outline:none}
+.cb{background:transparent;border:1px solid var(--bdr2);color:var(--muted);padding:8px 14px;border-radius:9px;font-size:13px;min-height:38px}
+.cb:hover{border-color:var(--acc);color:var(--txt)}.cb.on{background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.5);color:var(--acc)}
+
+/* DATE NAV */
+#dnav{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px}
+.nbtn{width:44px;height:44px;background:var(--surf);border:1px solid var(--bdr2);border-radius:11px;color:var(--txt);font-size:22px;display:flex;align-items:center;justify-content:center}
 .nbtn:disabled{opacity:.2;cursor:not-allowed}
-.dpick input{background:transparent;border:none;color:var(--acc);font-size:18px;font-weight:700;font-family:var(--mono);text-align:center;cursor:pointer;width:155px;min-height:32px}
-.dsub{font-size:11px;color:var(--muted);margin-top:3px;font-family:var(--mono);text-align:center}
-.bx,.bm,.bc,.bb,.ba,.bq{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-family:var(--mono);font-weight:700}
-.bx{background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
-.bm{background:rgba(251,146,60,.1);color:#fb923c;border:1px solid rgba(251,146,60,.3)}
-.bc{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
-.bb{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.3)}
-.ba{background:rgba(34,211,238,.1);color:#22d3ee;border:1px solid rgba(34,211,238,.3)}
-.bq{background:rgba(100,116,139,.1);color:#64748b;border:1px solid rgba(100,116,139,.3)}
-.arc{display:inline-block;background:rgba(251,191,36,.08);color:var(--acc2);padding:2px 7px;border-radius:4px;font-size:11px;font-family:var(--mono);font-weight:700;border:1px solid rgba(251,191,36,.22);cursor:pointer;transition:all .15s}
-.arc:hover{background:rgba(251,191,36,.18);border-color:rgba(251,191,36,.5)}
-.leg{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
-.li{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}.ld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.sbs{display:grid;gap:8px;margin-top:12px}.sb{padding:9px 5px;border-radius:8px;text-align:center}
-.sbv{font-size:19px;font-weight:700;font-family:var(--mono)}.sbl{font-size:10px;color:var(--muted);margin-top:2px}.sbp{font-size:10px;margin-top:1px;opacity:.7}
-.empty{text-align:center;padding:36px;color:var(--muted);font-size:13px}
-.mrow{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}.mlbl{font-size:11px;color:var(--muted)}
+.dpick input{background:transparent;border:none;color:var(--acc);font-size:20px;font-weight:700;font-family:var(--mono);text-align:center;cursor:pointer;width:160px;min-height:34px}
+.dpick input::-webkit-calendar-picker-indicator{filter:invert(.6) sepia(.3) saturate(2) hue-rotate(5deg) brightness(1.15);opacity:.8;cursor:pointer}
+.dpick input::-webkit-calendar-picker-indicator:hover{opacity:1}
+.dsub{font-size:12px;color:var(--muted);margin-top:3px;font-family:var(--mono);text-align:center}
+
+/* BADGES */
+.bx,.bm,.bc,.bb,.ba,.bq{display:inline-block;padding:3px 9px;border-radius:5px;font-size:12px;font-family:var(--mono);font-weight:700}
+.bx{background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.35)}
+.bm{background:rgba(251,146,60,.12);color:#fb923c;border:1px solid rgba(251,146,60,.35)}
+.bc{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.35)}
+.bb{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.35)}
+.ba{background:rgba(34,211,238,.12);color:#22d3ee;border:1px solid rgba(34,211,238,.35)}
+.bq{background:rgba(128,144,176,.12);color:#8090b0;border:1px solid rgba(128,144,176,.35)}
+
+/* AR CHIP */
+.arc{display:inline-block;background:rgba(251,191,36,.1);color:var(--acc2);padding:3px 9px;border-radius:5px;font-size:12px;font-family:var(--mono);font-weight:700;border:1px solid rgba(251,191,36,.3);cursor:pointer;transition:all .15s}
+.arc:hover{background:rgba(251,191,36,.22);border-color:rgba(251,191,36,.6)}
+
+/* LEGEND */
+.leg{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;justify-content:center}
+.li{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}.ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+/* STAT BOXES */
+.sbs{display:grid;gap:9px;margin-top:14px}.sb{padding:10px 6px;border-radius:9px;text-align:center}
+.sbv{font-size:22px;font-weight:700;font-family:var(--mono)}.sbl{font-size:11px;color:var(--muted);margin-top:3px}.sbp{font-size:11px;margin-top:1px;opacity:.7}
+
+/* MISC */
+.empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.mrow{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}.mlbl{font-size:12px;color:var(--muted)}
 .divider{border:none;border-top:1px solid var(--bdr);margin:14px 0}
-.arv-hdr{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bdr)}
-.arv-back{background:var(--surf);border:1px solid var(--bdr2);color:var(--muted);padding:8px 14px;border-radius:8px;font-size:12px;flex-shrink:0}
+
+/* AR VIEW */
+.arv-hdr{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--bdr)}
+.arv-back{background:var(--surf);border:1px solid var(--bdr2);color:var(--muted);padding:9px 16px;border-radius:9px;font-size:13px;flex-shrink:0}
 .arv-back:hover{border-color:var(--acc);color:var(--txt)}
-.arv-num{font-size:26px;font-weight:700;letter-spacing:-1px;line-height:1}
-.arv-sub{font-size:11px;color:var(--muted);font-family:var(--mono);margin-top:4px}
-.arv-cls{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
-#moverlay{position:fixed;inset:0;background:rgba(8,10,16,.9);display:none;align-items:center;justify-content:center;z-index:200;padding:16px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-#mbox{background:var(--surf);border:1px solid var(--bdr2);border-radius:14px;max-width:450px;width:100%;max-height:92vh;overflow-y:auto;animation:suUp .2s ease}
+.arv-num{font-size:28px;font-weight:700;letter-spacing:-1px;line-height:1}
+.arv-sub{font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:5px}
+.arv-cls{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+
+/* MODAL */
+#moverlay{position:fixed;inset:0;background:rgba(6,8,14,.92);display:none;align-items:center;justify-content:center;z-index:200;padding:16px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#mbox{background:var(--surf);border:1px solid var(--bdr2);border-radius:16px;max-width:440px;width:100%;max-height:94vh;overflow-y:auto;animation:suUp .2s ease}
 @keyframes suUp{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
-.mhdr{padding:14px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surf);z-index:1;border-radius:14px 14px 0 0}
-.mhdr h3{font-size:12px;font-weight:600;color:var(--muted);font-family:var(--mono)}
-.mclose{background:transparent;border:1px solid var(--bdr2);color:var(--muted);width:28px;height:28px;border-radius:6px;font-size:14px;display:flex;align-items:center;justify-content:center}
-.mclose:hover{border-color:var(--acc);color:var(--txt)}.mbody{padding:18px}
-.mrow2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.mfield{padding:10px 12px;background:var(--surf2);border-radius:8px;border:1px solid var(--bdr)}
+.mhdr{padding:13px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surf);z-index:1;border-radius:16px 16px 0 0}
+.mhdr h3{font-size:13px;font-weight:600;color:var(--muted);font-family:var(--mono)}
+.mclose{background:transparent;border:1px solid var(--bdr2);color:var(--muted);width:28px;height:28px;border-radius:7px;font-size:14px;display:flex;align-items:center;justify-content:center}
+.mclose:hover{border-color:var(--acc);color:var(--txt)}.mbody{padding:16px}
+.mrow2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.mfield{padding:9px 12px;background:var(--surf2);border-radius:9px;border:1px solid var(--bdr)}
 .mflabel{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:3px}
 .mfval{font-size:13px;font-weight:600;font-family:var(--mono);color:var(--txt)}
-.evtlink{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.3);color:var(--acc);padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;width:100%;margin-top:14px;transition:all .15s}
-.evtlink:hover{background:rgba(249,115,22,.16);border-color:var(--acc)}.tlbar{margin:12px 0}
-@media(max-width:480px){.hright{width:100%}.cs,.cb{font-size:11px;padding:6px 10px}#cnt{padding:10px}.card{padding:12px}.mrow2{grid-template-columns:1fr}.arsw input{width:120px}}
+.evtlink{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.4);color:var(--acc);padding:11px 16px;border-radius:11px;font-size:13px;font-weight:600;text-decoration:none;width:100%;transition:all .15s;cursor:pointer}
+.evtlink:hover{background:rgba(249,115,22,.2);border-color:var(--acc)}
+.evtlink2{font-size:11px;color:var(--muted);text-decoration:none;text-align:center;display:block;margin-top:6px}
+.evtlink2:hover{color:var(--acc)}
+
+/* LMSAL SPLIT SCREEN */
+#lmsal-screen{display:none;position:fixed;inset:0;z-index:300;background:var(--bg);flex-direction:row}
+#lmsal-left{width:360px;flex-shrink:0;overflow-y:auto;overflow-x:hidden;border-right:1px solid var(--bdr2);background:var(--surf)}
+#lmsal-left .mbody{padding:14px}
+#lmsal-left .mrow2{grid-template-columns:1fr 1fr}
+#lmsal-right{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
+#lmsal-topbar{padding:10px 16px;background:var(--surf);border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px;flex-shrink:0}
+#lmsal-url-txt{font-size:11px;color:var(--muted);font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.lmsal-topbtn{background:transparent;border:1px solid var(--bdr2);color:var(--muted);padding:5px 12px;border-radius:7px;font-size:12px;text-decoration:none;white-space:nowrap}
+.lmsal-topbtn:hover{border-color:var(--acc);color:var(--txt)}
+#lmsal-frame{flex:1;border:none;background:#fff;width:100%}
+#lmsal-helpbanner{display:none;position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(31,37,53,.96);border:1px solid var(--bdr2);border-radius:11px;padding:12px 18px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:90%}
+#lmsal-helpbanner p{font-size:12px;color:var(--muted);margin:0}
+#lmsal-helpbanner a{color:var(--acc);font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap}
+#lmsal-helpbanner button{background:transparent;border:none;color:var(--muted);font-size:14px;padding:0 4px}
+
+/* FOOTER */
+#footer{padding:12px 22px;border-top:1px solid var(--bdr);text-align:center;font-size:11px;color:var(--muted);font-family:var(--mono);line-height:1.7}
+
+@media(max-width:600px){
+  #lmsal-screen{flex-direction:column}
+  #lmsal-left{width:100%;border-right:none;border-bottom:1px solid var(--bdr2);max-height:42vh}
+  .hright{width:100%}.cs,.cb{font-size:12px;padding:6px 11px}
+  #cnt{padding:12px}.card{padding:14px}
+  .mrow2{grid-template-columns:1fr}
+  .arsw input{width:130px}
+}
 </style>
 </head>
 <body>
+
+<!-- UPLOAD -->
 <div id="upload">
-  <div class="ut"><div class="sun-icon">☀</div><h1>Solar Flare Archive</h1><p>SWPC · GEV EVENT CATALOGUE EXPLORER</p></div>
-  <div class="dz" id="dz"><div class="dz-icon">📂</div><h2>Drop your SWPC CSV catalogue here</h2><p>or tap to browse</p><div id="uerr"></div></div>
-  <div class="hint">Supports SWPC GEV flare catalogue CSV · Fully offline</div>
+  <div class="ut"><div class="sun-icon">&#9728;</div><h1>Solar Flare Archive</h1><p>SWPC &middot; GEV EVENT CATALOGUE EXPLORER</p></div>
+  <div class="dz" id="dz"><div class="dz-icon">&#128194;</div><h2>Drop your SWPC CSV catalogue here</h2><p>or tap to browse</p><div id="uerr"></div></div>
+  <div class="hint">SWPC GEV flare catalogue &middot; Fully offline &mdash; no internet required</div>
 </div>
+
+<!-- MAIN APP -->
 <div id="main">
   <div id="hdr">
     <div class="htitle" data-action="home">
-      <span style="font-size:20px;filter:drop-shadow(0 0 8px rgba(249,115,22,.5))">☀</span>
-      <div><h1>Solar Flare Archive</h1><div class="hsub" id="hsub">—</div></div>
+      <span style="font-size:22px;filter:drop-shadow(0 0 8px rgba(249,115,22,.5))">&#9728;</span>
+      <div><h1>Solar Flare Archive</h1><div class="hsub" id="hsub">&mdash;</div></div>
     </div>
     <div class="hright">
-      <div class="arsw"><span class="sico">🔍</span><input type="text" id="arsi" placeholder="Search region..." autocomplete="off" spellcheck="false"><div id="ardd"></div></div>
+      <div class="arsw"><span class="sico">&#128269;</span><input type="text" id="arsi" placeholder="Search region..." autocomplete="off" spellcheck="false"><div id="ardd"></div></div>
       <select class="cs" id="fcls">
-        <option value="all">All Classes</option><option value="X">Class X</option><option value="M">Class M</option><option value="C">Class C</option><option value="B">Class B</option><option value="A">Class A</option>
+        <option value="all">All Classes</option><option value="X">X-class</option><option value="M">M-class</option><option value="C">C-class</option><option value="B">B-class</option><option value="A">A-class</option>
       </select>
       <button class="cb" id="bnew">New File</button>
     </div>
   </div>
   <div id="sbar"></div>
   <div id="tabs">
-    <button class="tb on" data-tab="daily">☀ Daily</button>
-    <button class="tb" data-tab="regions">⚡ Regions</button>
-    <button class="tb" data-tab="stats">📊 Stats</button>
-    <button class="tb" data-tab="timeline">📈 Timeline</button>
+    <button class="tb on" data-tab="daily">&#9728; Daily</button>
+    <button class="tb" data-tab="regions">&#9889; Regions</button>
+    <button class="tb" data-tab="stats">&#128202; Stats</button>
+    <button class="tb" data-tab="timeline">&#128200; Timeline</button>
   </div>
   <div id="cnt"></div>
+  <div id="footer">
+    Data sources: <strong>SWPC/NOAA</strong> Solar Event Lists &nbsp;&middot;&nbsp; <strong>LMSAL</strong> SolarSoftWare Latest Events Archive
+  </div>
 </div>
+
+<!-- EVENT MODAL -->
 <div id="moverlay"><div id="mbox"><div id="mcon"></div></div></div>
+
+<!-- LMSAL SPLIT SCREEN -->
+<div id="lmsal-screen">
+  <div id="lmsal-left"><div id="lmsal-event-detail"></div></div>
+  <div id="lmsal-right">
+    <div id="lmsal-topbar">
+      <span id="lmsal-url-txt"></span>
+      <a id="lmsal-newtab" href="#" target="_blank" class="lmsal-topbtn">Open in new tab &#8599;</a>
+      <button class="lmsal-topbtn" id="lmsal-close">&#10005; Close</button>
+    </div>
+    <iframe id="lmsal-frame" src="" title="LMSAL Event Page"></iframe>
+    <div id="lmsal-helpbanner">
+      <p>If the page above is blank, the site may not allow embedding. <a id="lmsal-help-link" href="#" target="_blank">Open it directly &#8599;</a></p>
+      <button id="lmsal-help-dismiss">&#10005;</button>
+    </div>
+  </div>
+</div>
+
 <input type="file" id="fi" accept=".csv,.txt" style="display:none">
+
 <script>
-const CC={X:'#ef4444',M:'#fb923c',C:'#fbbf24',B:'#4ade80',A:'#22d3ee','?':'#64748b'};
+/* ===== CONSTANTS ===== */
+const CC={X:'#ef4444',M:'#fb923c',C:'#fbbf24',B:'#4ade80',A:'#22d3ee','?':'#8090b0'};
 const CO=['X','M','C','B','A'];
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+/* ===== CSV ===== */
 function parseCSV(txt){
   const lines=txt.split(/\r?\n/);let hi=0;
   while(hi<lines.length&&!lines[hi].trim())hi++;
@@ -149,6 +246,7 @@ function parseCSV(txt){
   return{headers:row(lines[hi]),rows:lines.slice(hi+1).filter(l=>l.trim()).map(row)};
 }
 
+/* ===== COLUMN DETECTION ===== */
 function detect(h){
   const a=h.map(x=>String(x).toLowerCase().replace(/[\s_#\/\-]/g,''));
   const f=(...ks)=>a.findIndex(c=>ks.some(k=>c.includes(k)));
@@ -159,13 +257,14 @@ function detect(h){
     peak:f('peaktime','maxtime','peak','max'),
     stop:f('stoptime','endtime','stop','end'),
     cls:f('goesclass','xrayclass','class','particulars','magnitude'),
-    loc:f('location','loc'),
-    reg:f('noaaar','noaaregion','arregion','activeregion','region','regnum','reg'),
+    loc:f('derivedposition','location','position','loc'),
+    reg:f('noaanumber','noaaar','noaaregion','arregion','activeregion','region','regnum','reg'),
     type:f('type','eventtype'),
     ename:f('ename','eventname','name'),
   };
 }
 
+/* ===== HELPERS ===== */
 const getCls=s=>{if(!s)return'?';const u=String(s).trim().toUpperCase();for(const k of CO)if(u.startsWith(k))return k;return'?';};
 const parseLoc=s=>{const m=String(s||'').match(/([NS])(\d+)([EW])(\d+)/i);if(!m)return null;return{lat:(m[1].toUpperCase()==='N'?1:-1)*+m[2],lon:(m[3].toUpperCase()==='W'?-1:1)*+m[4]};};
 const fmtT=t=>{if(!t)return'--';const s=String(t).replace(/\D/g,'').padStart(4,'0');return s.length>=4?s.slice(0,2)+':'+s.slice(2,4):String(t);};
@@ -175,11 +274,19 @@ const clsVal=f=>{const b={X:5,M:4,C:3,B:2,A:1,'?':.5};const n=parseFloat(String(
 const mkUrl=f=>{if(!f.ename)return null;const ds=f.ename.replace('gev_','').split('_')[0];return`https://www.lmsal.com/solarsoft/latest_events_archive/events_summary/${ds.slice(0,4)}/${ds.slice(4,6)}/${ds.slice(6,8)}/${f.ename}/index.html`;};
 
 function parseDate(row,cm){
-  if(cm.date>=0&&row[cm.date]){const v=String(row[cm.date]).trim();const m=v.match(/(\d{4})[-\/\s]?(\d{2})[-\/\s]?(\d{2})/);if(m)return`${m[1]}-${m[2]}-${m[3]}`;}
-  if(cm.yr>=0&&cm.mo>=0&&cm.da>=0){const yr=String(row[cm.yr]||'').trim(),mo=String(row[cm.mo]||'').trim().padStart(2,'0'),da=String(row[cm.da]||'').trim().padStart(2,'0');if(yr&&mo&&da&&yr.length===4)return`${yr}-${mo}-${da}`;}
+  if(cm.date>=0&&row[cm.date]){
+    const v=String(row[cm.date]).trim();
+    const m=v.match(/(\d{4})[-\/\s]?(\d{2})[-\/\s]?(\d{2})/);
+    if(m)return`${m[1]}-${m[2]}-${m[3]}`;
+  }
+  if(cm.yr>=0&&cm.mo>=0&&cm.da>=0){
+    const yr=String(row[cm.yr]||'').trim(),mo=String(row[cm.mo]||'').trim().padStart(2,'0'),da=String(row[cm.da]||'').trim().padStart(2,'0');
+    if(yr&&mo&&da&&yr.length===4)return`${yr}-${mo}-${da}`;
+  }
   return null;
 }
 
+/* ===== STATE ===== */
 const S={flares:[],tab:'daily',selDate:'',fClass:'all',arSort:'total',modal:null,arView:null};
 let _c=null;
 
@@ -198,149 +305,279 @@ function comp(){
   _c={filt,dates,ars:ars.sort((a,b)=>b.total-a.total),cm,tl:Object.values(tm).sort((a,b)=>a.month.localeCompare(b.month)),ph:Object.entries(ph).sort((a,b)=>+a[0]-+b[0]).map(([n,d])=>({n:+n,d})),dc};
   return _c;
 }
-
 function go(u){const nr=['fClass','flares'].some(k=>k in u);Object.assign(S,u);if(nr)_c=null;render();}
 
-/* ── CHARTS ── */
-function barChart(data,{h=190,vals=true}={}){
+/* ===== CHARTS with axis labels ===== */
+function barChart(data,{h=200,vals=true,xlabel='',ylabel='Count'}={}){
   if(!data.length)return'<div class="empty">No data</div>';
-  const max=Math.max(...data.map(d=>d.v),1),W=480,lp=44,bp=32,tp=8,cw=W-lp,ch=h-bp-tp,bw=cw/data.length;
+  const max=Math.max(...data.map(d=>d.v),1);
+  const lp=58,rp=12,tp=26,bp=xlabel?48:36;
+  const W=500,cw=W-lp-rp,ch=h-bp-tp,bw=cw/data.length;
+  const maxLabels=16;
+  const lblStep=Math.max(1,Math.ceil(data.length/maxLabels));
   let s=`<svg viewBox="0 0 ${W} ${h}" width="100%" preserveAspectRatio="xMidYMid meet">`;
   for(let i=0;i<=4;i++){const v=Math.round(max*i/4),y=tp+ch-(i/4)*ch;
-    s+=`<line x1="${lp}" y1="${y}" x2="${W}" y2="${y}" stroke="#252b3a" stroke-width=".5"/>`;
-    s+=`<text x="${lp-4}" y="${y+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${v>=1000?Math.round(v/100)/10+'k':v}</text>`;}
-  data.forEach((d,i)=>{const bh=Math.max((d.v/max)*ch,d.v?1:0),x=lp+i*bw+bw*.12,y=tp+ch-bh,bi=bw*.76;
-    s+=`<rect x="${x}" y="${y}" width="${bi}" height="${bh}" fill="${d.c||'#f97316'}" rx="4" opacity=".9"/>`;
-    s+=`<text x="${x+bi/2}" y="${h-bp+12}" text-anchor="middle" fill="#64748b" font-size="12" font-family="monospace" font-weight="bold">${d.l}</text>`;
-    if(vals&&d.v>0)s+=`<text x="${x+bi/2}" y="${y-4}" text-anchor="middle" fill="${d.c||'#f97316'}" font-size="11" font-family="monospace">${d.v.toLocaleString()}</text>`;});
-  return s+'</svg>';}
+    s+=`<line x1="${lp}" y1="${y}" x2="${W-rp}" y2="${y}" stroke="#303d58" stroke-width=".6"/>`;
+    s+=`<text x="${lp-6}" y="${y+4}" text-anchor="end" fill="#8090b0" font-size="11" font-family="monospace">${v>=1000?Math.round(v/100)/10+'k':v}</text>`;}
+  s+=`<text x="14" y="${tp+ch/2}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace" transform="rotate(-90,14,${tp+ch/2})">${ylabel}</text>`;
+  data.forEach((d,i)=>{
+    const bh=Math.max((d.v/max)*ch,d.v?1:0),x=lp+i*bw+bw*.1,y=tp+ch-bh,bi=bw*.8;
+    s+=`<rect x="${x}" y="${y}" width="${bi}" height="${bh}" fill="${d.c||'#f97316'}" rx="5" opacity=".92"/>`;
+    if(i%lblStep===0)s+=`<text x="${x+bi/2}" y="${h-bp+14}" text-anchor="middle" fill="#8090b0" font-size="${data.length>20?9:12}" font-family="monospace" font-weight="bold">${d.l}</text>`;
+    if(vals&&d.v>0&&data.length<=16)s+=`<text x="${x+bi/2}" y="${y-5}" text-anchor="middle" fill="${d.c||'#f97316'}" font-size="11" font-family="monospace">${d.v.toLocaleString()}</text>`;
+  });
+  if(xlabel)s+=`<text x="${lp+cw/2}" y="${h-6}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${xlabel}</text>`;
+  s+=`<line x1="${lp}" y1="${tp}" x2="${lp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  s+=`<line x1="${lp}" y1="${tp+ch}" x2="${W-rp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  return s+'</svg>';
+}
 
-function stackedBar(data,cats,{h=260}={}){
+function stackedBar(data,cats,{h=270,xlabel='Month (YY-MM)',ylabel='Event Count'}={}){
   if(!data.length)return'<div class="empty">No data</div>';
-  const max=Math.max(...data.map(d=>d.total),1),W=640,lp=44,bp=30,tp=8,cw=W-lp,ch=h-bp-tp,bw=Math.min(cw/data.length,28),gap=cw/data.length,ev=Math.max(1,Math.round(data.length/12));
+  const max=Math.max(...data.map(d=>d.total),1);
+  const lp=58,rp=12,tp=12,bp=46;
+  const W=1180,cw=W-lp-rp,ch=h-bp-tp,bw=Math.min(cw/data.length,30),gap=cw/data.length,ev=Math.max(1,Math.round(data.length/18));
   let s=`<svg viewBox="0 0 ${W} ${h}" width="100%" preserveAspectRatio="none">`;
   for(let i=0;i<=4;i++){const v=Math.round(max*i/4),y=tp+ch-(i/4)*ch;
-    s+=`<line x1="${lp}" y1="${y}" x2="${W}" y2="${y}" stroke="#252b3a" stroke-width=".5"/>`;
-    s+=`<text x="${lp-4}" y="${y+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${v>=1000?Math.round(v/100)/10+'k':v}</text>`;}
+    s+=`<line x1="${lp}" y1="${y}" x2="${W-rp}" y2="${y}" stroke="#303d58" stroke-width=".6"/>`;
+    s+=`<text x="${lp-6}" y="${y+4}" text-anchor="end" fill="#8090b0" font-size="11" font-family="monospace">${v>=1000?Math.round(v/100)/10+'k':v}</text>`;}
+  s+=`<text x="14" y="${tp+ch/2}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace" transform="rotate(-90,14,${tp+ch/2})">${ylabel}</text>`;
   data.forEach((d,i)=>{let yo=0;const x=lp+i*gap+(gap-bw)/2;
-    cats.forEach(c=>{if(!d[c])return;const bh=(d[c]/max)*ch,y=tp+ch-yo-bh;s+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="${CC[c]}" opacity=".9"/>`;yo+=bh;});
-    if(i%ev===0)s+=`<text x="${x+bw/2}" y="${h-bp+12}" text-anchor="middle" fill="#64748b" font-size="9" font-family="monospace">${d.month.slice(2)}</text>`;});
-  return s+'</svg>';}
+    cats.forEach(c=>{if(!d[c])return;const bh=(d[c]/max)*ch,y=tp+ch-yo-bh;s+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="${CC[c]}" opacity=".92"/>`;yo+=bh;});
+    if(i%ev===0)s+=`<text x="${x+bw/2}" y="${h-bp+14}" text-anchor="middle" fill="#8090b0" font-size="10" font-family="monospace">${d.month.slice(2)}</text>`;});
+  s+=`<text x="${lp+cw/2}" y="${h-6}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${xlabel}</text>`;
+  s+=`<line x1="${lp}" y1="${tp}" x2="${lp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  s+=`<line x1="${lp}" y1="${tp+ch}" x2="${W-rp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  return s+'</svg>';
+}
 
-function lineChart(data,keys,cols,{h=170}={}){
+function lineChart(data,keys,cols,{h=180,xlabel='Month (YY-MM)',ylabel='Event Count'}={}){
   if(!data.length)return'<div class="empty">No data</div>';
-  const max=Math.max(...keys.flatMap(k=>data.map(d=>d[k]||0)),1),W=640,lp=44,bp=20,tp=8,cw=W-lp,ch=h-bp-tp;
+  const max=Math.max(...keys.flatMap(k=>data.map(d=>d[k]||0)),1);
+  const lp=58,rp=12,tp=12,bp=38;
+  const W=1180,cw=W-lp-rp,ch=h-bp-tp;
   let s=`<svg viewBox="0 0 ${W} ${h}" width="100%" preserveAspectRatio="none">`;
   for(let i=0;i<=4;i++){const v=Math.round(max*i/4),y=tp+ch-(i/4)*ch;
-    s+=`<line x1="${lp}" y1="${y}" x2="${W}" y2="${y}" stroke="#252b3a" stroke-width=".5"/>`;
-    s+=`<text x="${lp-4}" y="${y+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${v>=1000?Math.round(v/100)/10+'k':v}</text>`;}
+    s+=`<line x1="${lp}" y1="${y}" x2="${W-rp}" y2="${y}" stroke="#303d58" stroke-width=".6"/>`;
+    s+=`<text x="${lp-6}" y="${y+4}" text-anchor="end" fill="#8090b0" font-size="11" font-family="monospace">${v>=1000?Math.round(v/100)/10+'k':v}</text>`;}
+  s+=`<text x="14" y="${tp+ch/2}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace" transform="rotate(-90,14,${tp+ch/2})">${ylabel}</text>`;
   keys.forEach((k,ki)=>{const pts=data.map((d,i)=>`${lp+(i/(data.length-1||1))*cw},${tp+ch-((d[k]||0)/max)*ch}`).join(' ');
-    s+=`<polyline points="${pts}" fill="none" stroke="${cols[ki]}" stroke-width="${ki===0?2:1.5}" stroke-linejoin="round" ${ki>0?'stroke-dasharray="4,3"':''}/>`; });
-  return s+'</svg>';}
+    s+=`<polyline points="${pts}" fill="none" stroke="${cols[ki]}" stroke-width="${ki===0?2.5:1.5}" stroke-linejoin="round" ${ki>0?'stroke-dasharray="5,3"':''}/>`; });
+  const ev=Math.max(1,Math.round(data.length/10));
+  data.forEach((d,i)=>{if(i%ev===0){const x=lp+(i/(data.length-1||1))*cw;s+=`<text x="${x}" y="${h-bp+14}" text-anchor="middle" fill="#8090b0" font-size="10" font-family="monospace">${d.month.slice(2)}</text>`;}});
+  s+=`<text x="${lp+cw/2}" y="${h-4}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${xlabel}</text>`;
+  s+=`<line x1="${lp}" y1="${tp}" x2="${lp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  s+=`<line x1="${lp}" y1="${tp+ch}" x2="${W-rp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  return s+'</svg>';
+}
 
-function horizBar(data,{h=260,cats}={}){
+function horizBar(data,{h=280,cats,xlabel='Event Count',W=480}={}){
   const items=data.filter(d=>d.region!=='--').slice(0,Math.min(data.length,20));
   if(!items.length)return'<div class="empty">No AR data</div>';
-  const max=Math.max(...items.map(d=>d.total),1),W=460,lp=52,rp=16,tp=2,bh=h/(items.length+.5),bw=W-lp-rp,uc=cats||CO;
-  let s=`<svg viewBox="0 0 ${W} ${h}" width="100%" preserveAspectRatio="xMinYMid meet">`;
+  const max=Math.max(...items.map(d=>d.total),1);
+  const lp=64,rp=20,tp=8,bp=36;
+  const cw=W-lp-rp,bh=h/(items.length+.5),uc=cats||CO;
+  let s=`<svg viewBox="0 0 ${W} ${h+bp}" width="100%" preserveAspectRatio="xMinYMid meet">`;
+  for(let i=0;i<=4;i++){const x=lp+(i/4)*cw;
+    s+=`<line x1="${x}" y1="${tp}" x2="${x}" y2="${tp+items.length*bh}" stroke="#303d58" stroke-width=".6"/>`;
+    s+=`<text x="${x}" y="${tp+items.length*bh+16}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${Math.round(max*i/4)}</text>`;}
+  s+=`<text x="${lp+cw/2}" y="${tp+items.length*bh+bp-4}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${xlabel}</text>`;
   items.forEach((d,i)=>{const y=tp+i*bh;
-    s+=`<text x="${lp-5}" y="${y+bh*.67}" text-anchor="end" fill="#dce6f5" font-size="12" font-family="monospace" style="cursor:pointer" data-action="ar-view" data-ar="${d.region}">${d.region}</text>`;
-    let xo=0;uc.forEach(c=>{if(!d[c])return;const sw=(d[c]/max)*bw;s+=`<rect x="${lp+xo}" y="${y+2}" width="${sw}" height="${bh-5}" fill="${CC[c]}" rx="2" opacity=".9"/>`;xo+=sw;});
-    s+=`<text x="${lp+xo+4}" y="${y+bh*.67}" fill="#64748b" font-size="10" font-family="monospace">${d.total}</text>`;});
-  return s+'</svg>';}
+    s+=`<text x="${lp-6}" y="${y+bh*.68}" text-anchor="end" fill="#f0f4ff" font-size="13" font-family="monospace" style="cursor:pointer" data-action="ar-view" data-ar="${d.region}">${d.region}</text>`;
+    let xo=0;uc.forEach(c=>{if(!d[c])return;const sw=(d[c]/max)*cw;s+=`<rect x="${lp+xo}" y="${y+3}" width="${sw}" height="${bh-7}" fill="${CC[c]}" rx="2" opacity=".92"/>`;xo+=sw;});
+    s+=`<text x="${lp+xo+5}" y="${y+bh*.68}" fill="#8090b0" font-size="11" font-family="monospace">${d.total}</text>`;});
+  s+=`<line x1="${lp}" y1="${tp}" x2="${lp}" y2="${tp+items.length*bh}" stroke="#3c4d70" stroke-width="1"/>`;
+  s+=`<line x1="${lp}" y1="${tp+items.length*bh}" x2="${W-rp}" y2="${tp+items.length*bh}" stroke="#3c4d70" stroke-width="1"/>`;
+  return s+'</svg>';
+}
 
-/* ── STEM CHART ── */
+/* ===== AR TIMELINE — bar chart (one bar per flare, height = class magnitude) ===== */
 function stemChart(events){
   if(!events.length)return'<div class="empty">No events</div>';
-  const W=640,lp=44,rp=20,tp=24,bp=44,h=220,cw=W-lp-rp,ch=h-tp-bp;
+  const lp=58,rp=24,tp=26,bp=52,h=230;
+  const W=1180,cw=W-lp-rp,ch=h-tp-bp;
   const ts=events.map(e=>{const t=new Date(`${e.date}T${e.start&&e.start.includes(':')&&e.start!=='--'?e.start:'00:00'}:00Z`).getTime();return isNaN(t)?new Date(e.date+'T00:00:00Z').getTime():t;});
   const t0=Math.min(...ts),t1=Math.max(...ts),span=Math.max(t1-t0,86400000);
   let s=`<svg viewBox="0 0 ${W} ${h}" width="100%" preserveAspectRatio="none">`;
   ['A','B','C','M','X'].forEach((c,i)=>{const y=tp+ch-((i+1)/5)*ch;
-    s+=`<line x1="${lp}" y1="${y}" x2="${W-rp}" y2="${y}" stroke="#252b3a" stroke-width="${i===2?1:.5}" stroke-dasharray="${i===2?'':'4,4'}"/>`;
-    s+=`<text x="${lp-5}" y="${y+4}" text-anchor="end" fill="${CC[c]}" font-size="10" font-family="monospace" font-weight="bold">${c}</text>`;});
-  s+=`<line x1="${lp}" y1="${tp+ch}" x2="${W-rp}" y2="${tp+ch}" stroke="#2e3649" stroke-width="1.2"/>`;
-  events.forEach((ev,ii)=>{const x=lp+((ts[ii]-t0)/span)*cw,v=clsVal(ev),y2=tp+ch-(v/5)*ch,col=CC[ev.cls]||CC['?'],r=ev.cls==='X'?6:ev.cls==='M'?5:4;
-    s+=`<line x1="${x}" y1="${tp+ch}" x2="${x}" y2="${y2+r}" stroke="${col}" stroke-width="1.5" opacity=".4"/>`;
-    s+=`<circle cx="${x}" cy="${y2}" r="${r}" fill="${col}" opacity=".88" style="cursor:pointer" data-action="event-detail" data-ename="${ev.ename||''}"/>`;});
-  const step=Math.max(1,Math.floor(events.length/7));
+    s+=`<line x1="${lp}" y1="${y}" x2="${W-rp}" y2="${y}" stroke="#303d58" stroke-width="${i===2?1:.5}" stroke-dasharray="${i===2?'':'4,4'}"/>`;
+    s+=`<text x="${lp-7}" y="${y+4}" text-anchor="end" fill="${CC[c]}" font-size="12" font-family="monospace" font-weight="bold">${c}</text>`;});
+  s+=`<text x="14" y="${tp+ch/2}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace" transform="rotate(-90,14,${tp+ch/2})">GOES Class</text>`;
+  s+=`<line x1="${lp}" y1="${tp+ch}" x2="${W-rp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1.5"/>`;
+  const bw=Math.max(4,Math.min(16,(cw/events.length)*0.55));
+  events.forEach((ev,ii)=>{
+    const x=lp+((ts[ii]-t0)/span)*cw, v=clsVal(ev), barH=Math.max((v/5)*ch,2), y=tp+ch-barH;
+    const col=CC[ev.cls]||CC['?'];
+    s+=`<rect x="${x-bw/2}" y="${y}" width="${bw}" height="${barH}" fill="${col}" opacity=".88" rx="2" style="cursor:pointer" data-action="event-detail" data-ename="${ev.ename||''}"/>`;
+  });
+  const step=Math.max(1,Math.floor(events.length/12));
   for(let i=0;i<events.length;i+=step){const x=lp+((ts[i]-t0)/span)*cw;
-    s+=`<text x="${x}" y="${h-bp+14}" text-anchor="middle" fill="#64748b" font-size="9" font-family="monospace">${events[i].date.slice(5)}</text>`;
-    s+=`<line x1="${x}" y1="${tp+ch}" x2="${x}" y2="${tp+ch+4}" stroke="#2e3649" stroke-width="1"/>`;}
-  return s+'</svg>';}
+    s+=`<text x="${x}" y="${h-bp+16}" text-anchor="middle" fill="#8090b0" font-size="10" font-family="monospace">${events[i].date.slice(5)}</text>`;
+    s+=`<line x1="${x}" y1="${tp+ch}" x2="${x}" y2="${tp+ch+5}" stroke="#3c4d70" stroke-width="1"/>`;}
+  s+=`<text x="${lp+cw/2}" y="${h-4}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">Date (MM-DD)</text>`;
+  s+=`<line x1="${lp}" y1="${tp}" x2="${lp}" y2="${tp+ch}" stroke="#3c4d70" stroke-width="1"/>`;
+  return s+'</svg>';
+}
 
-/* ── SOLAR DISK — spherical elliptical longitude lines ── */
-function solarDisk(flares,sz=260){
-  const R=sz*.41,cx=sz/2,cy=sz/2,PI=Math.PI;
-  const toXY=(lat,lon)=>({x:cx+R*Math.sin(lon*PI/180)*Math.cos(lat*PI/180),y:cy-R*Math.sin(lat*PI/180)});
-  let s=`<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}"><defs>
-  <radialGradient id="dg${sz}" cx="38%" cy="35%" r="65%"><stop offset="0%" stop-color="#fde68a" stop-opacity=".05"/><stop offset="100%" stop-color="#92400e" stop-opacity=".01"/></radialGradient>
+/* ===== SOLAR DISK — correct projection, visible NESW labels ===== */
+function solarDisk(flares,sz=240){
+  const pad=34;
+  const vw=sz+2*pad, vh=sz+2*pad;
+  const R=sz*0.45;
+  const cx=vw/2, cy=vh/2;
+  const PI=Math.PI;
+
+  /* East on LEFT, West on RIGHT as seen from Earth */
+  const toXY=(lat,lon)=>({
+    x: cx - R*Math.sin(lon*PI/180)*Math.cos(lat*PI/180),
+    y: cy - R*Math.sin(lat*PI/180)
+  });
+
+  let s=`<svg width="${sz}" height="${sz}" viewBox="0 0 ${vw} ${vh}"><defs>
+  <radialGradient id="dg${sz}" cx="38%" cy="35%" r="65%">
+    <stop offset="0%" stop-color="#fde68a" stop-opacity=".06"/>
+    <stop offset="100%" stop-color="#92400e" stop-opacity=".01"/>
+  </radialGradient>
   <clipPath id="dc${sz}"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath></defs>
   <circle cx="${cx}" cy="${cy}" r="${R+22}" fill="none" stroke="#f97316" stroke-width="14" opacity=".022"/>
   <circle cx="${cx}" cy="${cy}" r="${R+9}" fill="none" stroke="#fbbf24" stroke-width="5" opacity=".04"/>
   <circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#dg${sz})"/>`;
-  /* latitude lines — horizontal chords (correct orthographic projection) */
-  [-60,-30,0,30,60].forEach(lat=>{const yg=cy-R*Math.sin(lat*PI/180),hw=R*Math.cos(lat*PI/180);
-    s+=`<line x1="${cx-hw}" y1="${yg}" x2="${cx+hw}" y2="${yg}" stroke="#f97316" stroke-width="${lat===0?1:.4}" opacity="${lat===0?.45:.2}" clip-path="url(#dc${sz})"/>`;});
-  /* longitude lines — true ellipses for spherical appearance */
-  [-60,-30,0,30,60].forEach(lon=>{
-    if(lon===0){s+=`<line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="#f97316" stroke-width="1" opacity=".45" clip-path="url(#dc${sz})"/>`;}
-    else{const rx=R*Math.abs(Math.sin(lon*PI/180));s+=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${R}" fill="none" stroke="#f97316" stroke-width=".4" opacity=".2" clip-path="url(#dc${sz})"/>`;} });
-  flares.filter(f=>f.pl).forEach(f=>{const{x,y}=toXY(f.pl.lat,f.pl.lon),col=CC[f.cls]||CC['?'],r=f.cls==='X'?8:f.cls==='M'?6:f.cls==='C'?4.5:3;
-    s+=`<circle cx="${x}" cy="${y}" r="${r*2}" fill="${col}" opacity=".1"/>`;
-    s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${col}" opacity=".9"/>`;});
-  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#f97316" stroke-width="1.5" opacity=".5"/>`;
-  [['N',cx,cy-R-10,'middle'],['S',cx,cy+R+18,'middle'],['E',cx-R-12,cy+4,'end'],['W',cx+R+12,cy+4,'start']].forEach(([l,x,y,a])=>
-    s+=`<text x="${x}" y="${y}" text-anchor="${a}" fill="#f97316" font-size="10" opacity=".5" font-family="monospace">${l}</text>`);
-  return s+'</svg>';}
 
-/* ── TIMELINE BAR ── */
+  [-60,-30,0,30,60].forEach(lat=>{
+    const yg=cy-R*Math.sin(lat*PI/180), hw=R*Math.cos(lat*PI/180);
+    s+=`<line x1="${cx-hw}" y1="${yg}" x2="${cx+hw}" y2="${yg}" stroke="#f97316" stroke-width="${lat===0?1.2:.45}" opacity="${lat===0?.5:.22}" clip-path="url(#dc${sz})"/>`;
+  });
+
+  [-60,-30,0,30,60].forEach(lon=>{
+    if(lon===0){
+      s+=`<line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="#f97316" stroke-width="1.2" opacity=".5" clip-path="url(#dc${sz})"/>`;
+    } else {
+      const rx=R*Math.abs(Math.sin(lon*PI/180));
+      s+=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${R}" fill="none" stroke="#f97316" stroke-width=".45" opacity=".22" clip-path="url(#dc${sz})"/>`;
+    }
+  });
+
+  flares.filter(f=>f.pl).forEach(f=>{
+    const{x,y}=toXY(f.pl.lat,f.pl.lon);
+    const col=CC[f.cls]||CC['?'], r=f.cls==='X'?9:f.cls==='M'?7:f.cls==='C'?5.5:4;
+    s+=`<circle cx="${x}" cy="${y}" r="${r*2.2}" fill="${col}" opacity=".12"/>`;
+    s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${col}" opacity=".92"/>`;
+  });
+
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#f97316" stroke-width="1.8" opacity=".55"/>`;
+  s+=`<text x="${cx}" y="${cy-R-12}" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold" opacity=".75" font-family="monospace">N</text>`;
+  s+=`<text x="${cx}" y="${cy+R+22}" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold" opacity=".75" font-family="monospace">S</text>`;
+  s+=`<text x="${cx-R-14}" y="${cy+5}" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold" opacity=".75" font-family="monospace">E</text>`;
+  s+=`<text x="${cx+R+14}" y="${cy+5}" text-anchor="middle" fill="#f97316" font-size="13" font-weight="bold" opacity=".75" font-family="monospace">W</text>`;
+
+  return s+'</svg>';
+}
+
+/* ===== TIMELINE BAR — non-overlapping, properly padded ===== */
 function tlBar(f){
   const sm=tMin(f.start),pm=tMin(f.peak),em=tMin(f.stop);
   if(sm===null)return'';
-  const dur=Math.max((em||sm+30)-sm,1),pp=Math.min(90,Math.max(10,10+((pm||sm)-sm)/dur*80)),col=CC[f.cls]||CC['?'];
-  return`<div class="tlbar"><svg viewBox="0 0 300 40" width="100%">
-<line x1="10" y1="20" x2="290" y2="20" stroke="#252b3a" stroke-width="2.5" stroke-linecap="round"/>
-<line x1="10" y1="20" x2="${10+pp*2.8}" y2="20" stroke="${col}" stroke-width="2.5" stroke-linecap="round"/>
-${em?`<line x1="${10+pp*2.8}" y1="20" x2="290" y2="20" stroke="${col}" stroke-width="2" stroke-dasharray="4,3" opacity=".35"/>`:''}
-<circle cx="10" cy="20" r="4" fill="#252b3a" stroke="#64748b" stroke-width="1.5"/>
-<circle cx="${10+pp*2.8}" cy="20" r="6" fill="${col}"/>
-${em?`<circle cx="290" cy="20" r="4" fill="#252b3a" stroke="#64748b" stroke-width="1.5"/>`:''}
-<text x="10" y="38" text-anchor="middle" fill="#64748b" font-size="9" font-family="monospace">${f.start}</text>
-<text x="${10+pp*2.8}" y="11" text-anchor="middle" fill="${col}" font-size="9" font-family="monospace" font-weight="bold">${f.peak}</text>
-${em?`<text x="290" y="38" text-anchor="middle" fill="#64748b" font-size="9" font-family="monospace">${f.stop}</text>`:''}
-</svg><div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);font-family:var(--mono)"><span>START</span><span style="color:${col}">PEAK</span>${em?'<span>END</span>':''}</div></div>`;}
+  const dur=Math.max((em||sm+30)-sm,1);
+  const pp=Math.min(88,Math.max(12,12+((pm||sm)-sm)/dur*76));
+  const col=CC[f.cls]||CC['?'];
+  const W=300,H=100,lx=32,rx=268,trackY=62;
+  const mx=lx+(pp/100)*(rx-lx);
+  return`<div class="tlbar"><svg viewBox="0 0 ${W} ${H}" width="100%">
+  <line x1="${lx}" y1="${trackY}" x2="${rx}" y2="${trackY}" stroke="#303d58" stroke-width="3" stroke-linecap="round"/>
+  <line x1="${lx}" y1="${trackY}" x2="${mx}" y2="${trackY}" stroke="${col}" stroke-width="3" stroke-linecap="round"/>
+  ${em?`<line x1="${mx}" y1="${trackY}" x2="${rx}" y2="${trackY}" stroke="${col}" stroke-width="2" stroke-dasharray="4,3" opacity=".4"/>`:''}
+  <circle cx="${lx}" cy="${trackY}" r="5" fill="#303d58" stroke="#8090b0" stroke-width="1.5"/>
+  <circle cx="${mx}" cy="${trackY}" r="7" fill="${col}"/>
+  ${em?`<circle cx="${rx}" cy="${trackY}" r="5" fill="#303d58" stroke="#8090b0" stroke-width="1.5"/>`:''}
+  <line x1="${mx}" y1="${trackY-8}" x2="${mx}" y2="${trackY-26}" stroke="${col}" stroke-width="1" opacity=".5"/>
+  <text x="${mx}" y="22" text-anchor="middle" fill="${col}" font-size="13" font-family="monospace" font-weight="bold">${f.peak}</text>
+  <text x="${mx}" y="9" text-anchor="middle" fill="${col}" font-size="9" font-family="monospace" opacity=".75" letter-spacing="1">PEAK</text>
+  <text x="${lx}" y="${trackY+22}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${f.start}</text>
+  <text x="${lx}" y="${trackY+35}" text-anchor="middle" fill="#8090b0" font-size="9" font-family="monospace" opacity=".6" letter-spacing="1">START</text>
+  ${em?`<text x="${rx}" y="${trackY+22}" text-anchor="middle" fill="#8090b0" font-size="11" font-family="monospace">${f.stop}</text>`:''}
+  ${em?`<text x="${rx}" y="${trackY+35}" text-anchor="middle" fill="#8090b0" font-size="9" font-family="monospace" opacity=".6" letter-spacing="1">END</text>`:''}
+</svg></div>`;
+}
 
+/* ===== HTML HELPERS ===== */
 const bdg=c=>`<span class="b${c==='?'?'q':c.toLowerCase()}">${c}</span>`;
 const arChip=(r,extra='')=>r&&r!=='--'?`<span class="arc" data-action="ar-view" data-ar="${r}" ${extra}>${r}</span>`:`<span style="color:var(--muted)">--</span>`;
 
-/* ── MODAL ── */
-function rModal(f){
-  const col=CC[f.cls]||CC['?'],url=mkUrl(f),dur=tMin(f.stop)!==null&&tMin(f.start)!==null?tMin(f.stop)-tMin(f.start):null;
-  return`<div class="mhdr"><h3>${f.ename||'Event Detail'}</h3><button class="mclose" data-action="close-modal">&#10005;</button></div>
-<div class="mbody">
-  <div style="text-align:center;margin-bottom:14px">
-    <div style="font-size:11px;color:var(--muted);font-family:var(--mono)">${fmtDate(f.date)}</div>
-    <div style="font-size:32px;font-weight:700;color:${col};letter-spacing:-1px;margin-top:6px">${f.cr||f.cls}</div>
-    <div style="font-size:11px;color:${col};opacity:.65;margin-top:2px">GOES Class ${f.cls}</div>
-  </div>
-  ${tlBar(f)}<hr class="divider">
-  <div class="mrow2">
-    <div class="mfield"><div class="mflabel">Start UT</div><div class="mfval">${f.start}</div></div>
-    <div class="mfield"><div class="mflabel">Peak UT</div><div class="mfval" style="color:${col}">${f.peak}</div></div>
-    <div class="mfield"><div class="mflabel">End UT</div><div class="mfval">${f.stop||'--'}</div></div>
-    ${dur!==null?`<div class="mfield"><div class="mflabel">Duration</div><div class="mfval">${dur} min</div></div>`:''}
-  </div><hr class="divider">
-  <div class="mrow2">
-    <div class="mfield"><div class="mflabel">NOAA Region</div><div style="margin-top:5px">${arChip(f.region)}</div></div>
-    <div class="mfield"><div class="mflabel">Location</div><div class="mfval" style="font-size:12px;margin-top:2px">${f.loc||'--'}</div></div>
-  </div>
-  ${f.pl?`<div style="display:flex;justify-content:center;margin:12px 0">${solarDisk([f],170)}</div>`:''}
-  <hr class="divider">
-  ${url?`<a class="evtlink" href="${url}" target="_blank" rel="noopener">🔗 Open Event Page on LMSAL ↗</a>`:`<div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">No event link for this entry</div>`}
-</div>`;}
+/* ===== EVENT DETAIL HTML — action button moved to TOP, compact spacing ===== */
+function eventDetailHTML(f,forSplit=false){
+  const col=CC[f.cls]||CC['?'],url=mkUrl(f);
+  const dur=tMin(f.stop)!==null&&tMin(f.start)!==null?tMin(f.stop)-tMin(f.start):null;
+  return`
+<div style="text-align:center;margin-bottom:10px">
+  <div style="font-size:11px;color:var(--muted);font-family:var(--mono)">${fmtDate(f.date)}</div>
+  <div style="font-size:32px;font-weight:700;color:${col};letter-spacing:-1px;margin-top:4px">${f.cr||f.cls}</div>
+  <div style="font-size:11px;color:${col};opacity:.65;margin-top:2px">GOES Class ${f.cls}</div>
+</div>
+${!forSplit&&url?`
+<button class="evtlink" data-action="open-lmsal" data-url="${url}">&#128279; Open Event Page on LMSAL &nbsp;&rarr;</button>
+<a class="evtlink2" href="${url}" target="_blank">or open in a new tab &nearr;</a>
+`:''}
+${!forSplit&&!url?`<div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">No event link available for this entry</div>`:''}
+<hr class="divider">
+${tlBar(f)}
+<hr class="divider">
+<div class="mrow2">
+  <div class="mfield"><div class="mflabel">Start UT</div><div class="mfval">${f.start}</div></div>
+  <div class="mfield"><div class="mflabel">Peak UT</div><div class="mfval" style="color:${col}">${f.peak}</div></div>
+  <div class="mfield"><div class="mflabel">End UT</div><div class="mfval">${f.stop||'--'}</div></div>
+  ${dur!==null?`<div class="mfield"><div class="mflabel">Duration</div><div class="mfval">${dur} min</div></div>`:''}
+</div>
+<div class="mrow2">
+  <div class="mfield"><div class="mflabel">NOAA Region</div><div style="margin-top:5px">${arChip(f.region)}</div></div>
+  <div class="mfield"><div class="mflabel">Location</div><div class="mfval" style="font-size:12px;margin-top:2px">${f.loc||'--'}</div></div>
+</div>
+<div style="display:flex;justify-content:center;margin:10px 0">${solarDisk(f.pl?[f]:[],150)}</div>
+<div style="text-align:center;font-size:10px;color:var(--muted);margin-top:8px;font-family:var(--mono);opacity:.7">
+  Source: SWPC/NOAA Solar Event List &middot; LMSAL SolarSoftWare
+</div>`;
+}
 
-/* ── AR VIEW ── */
+/* ===== EVENT MODAL ===== */
+function rModal(f){
+  return`<div class="mhdr">
+  <h3>${f.ename||'Event Detail'}</h3>
+  <button class="mclose" data-action="close-modal">&#10005;</button>
+</div>
+<div class="mbody">${eventDetailHTML(f,false)}</div>`;
+}
+
+/* ===== LMSAL SPLIT SCREEN — honest handling, no false-positive blocking ===== */
+function openLmsal(f,url){
+  document.getElementById('lmsal-event-detail').innerHTML=
+    `<div class="mbody">${eventDetailHTML(f,true)}</div>`;
+  document.getElementById('lmsal-url-txt').textContent=url;
+  document.getElementById('lmsal-newtab').href=url;
+  document.getElementById('lmsal-help-link').href=url;
+
+  document.getElementById('moverlay').style.display='none';
+  const screen=document.getElementById('lmsal-screen');
+  screen.style.display='flex';
+  document.body.style.overflow='hidden';
+
+  const frame=document.getElementById('lmsal-frame');
+  const banner=document.getElementById('lmsal-helpbanner');
+  banner.style.display='none';
+  frame.src=url;
+
+  /*
+    NOTE: We cannot reliably detect from JavaScript whether a cross-origin
+    site blocks iframe embedding (via X-Frame-Options / CSP). Reading
+    iframe.contentDocument on a cross-origin frame always throws a security
+    error -- regardless of whether the page loaded successfully -- so any
+    such check would falsely report "blocked" every time. Instead we simply
+    attempt the load and, after a short delay, show a small non-blocking
+    helper banner with a direct link, without hiding the iframe itself.
+  */
+  clearTimeout(window._lmsalBannerTimer);
+  window._lmsalBannerTimer=setTimeout(()=>{ banner.style.display='flex'; }, 4000);
+}
+
+/* ===== AR DETAIL VIEW ===== */
 function rARView(region){
   const events=S.flares.filter(f=>f.region===region).sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
   if(!events.length)return`<div class="empty">No events found for region ${region}</div>`;
@@ -362,11 +599,15 @@ function rARView(region){
   <div class="leg">${CO.filter(c=>cm[c]).map(c=>`<div class="li"><div class="ld" style="background:${CC[c]};box-shadow:0 0 5px ${CC[c]}"></div>Class ${c} (${cm[c]})</div>`).join('')}</div>
 </div>
 <div class="g2">
-  <div class="card"><div class="ctit">Heliographic Positions</div>
-    <div style="display:flex;justify-content:center">${solarDisk(events.filter(f=>f.pl))}</div>
-    ${!events.some(f=>f.pl)?'<div style="text-align:center;font-size:11px;color:var(--muted);margin-top:6px;opacity:.6">No location data for this region</div>':''}
+  <div class="card">
+    <div class="ctit">Heliographic Positions</div>
+    <div style="display:flex;justify-content:center">${solarDisk(events.filter(f=>f.pl),260)}</div>
+    ${!events.some(f=>f.pl)?'<div style="text-align:center;font-size:12px;color:var(--muted);margin-top:8px;opacity:.6">No location data for this region</div>':''}
   </div>
-  <div class="card"><div class="ctit">Class Breakdown</div>${barChart(CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]})))}</div>
+  <div class="card">
+    <div class="ctit">Class Breakdown</div>
+    ${barChart(CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]})),{xlabel:'GOES Class',ylabel:'Count'})}
+  </div>
 </div>
 <div class="card">
   <div class="ctit">All Events &middot; Region ${region}<small>click any row for details</small></div>
@@ -379,18 +620,26 @@ function rARView(region){
       <td style="color:${f.pl?'var(--txt)':'var(--muted)'}">${f.loc||'--'}</td>
     </tr>`).join('')}</tbody>
   </table></div>
-</div>`;}
+</div>`;
+}
 
-/* ── STATS BAR ── */
+/* ===== STATS BAR ===== */
 function renderSbar(){
   const{filt,dates,cm}=comp();
-  const range=dates.length?`${dates[0]} → ${dates[dates.length-1]}`:'--';
+  const range=dates.length?`${dates[0]} &rarr; ${dates[dates.length-1]}`:'--';
   const uAR=new Set(filt.map(f=>f.region).filter(r=>r!=='--')).size;
-  document.getElementById('sbar').innerHTML=[['EVENTS',filt.length.toLocaleString(),'var(--txt)'],['DATE RANGE',range,'var(--muted)'],['ACTIVE REGIONS',uAR,'var(--txt)'],...CO.slice(0,4).map(c=>[`CLASS ${c}`,(cm[c]||0).toLocaleString(),CC[c]])].map(([l,v,col])=>`<div class="sc"><div class="sl">${l}</div><div class="sv" style="color:${col}">${v}</div></div>`).join('');}
+  document.getElementById('sbar').innerHTML=[
+    ['EVENTS',filt.length.toLocaleString(),'var(--txt)'],
+    ['DATE RANGE',range,'var(--muted)'],
+    ['ACTIVE REGIONS',uAR,'var(--txt)'],
+    ...CO.slice(0,4).map(c=>[`CLASS ${c}`,(cm[c]||0).toLocaleString(),CC[c]]),
+  ].map(([l,v,col])=>`<div class="sc"><div class="sl">${l}</div><div class="sv" style="color:${col}">${v}</div></div>`).join('');
+}
 
-/* ── DAILY ── */
+/* ===== DAILY ===== */
 function rDaily(){
-  const{filt,dates}=comp();const di=dates.indexOf(S.selDate),day=filt.filter(f=>f.date===S.selDate);
+  const{filt,dates}=comp();
+  const di=dates.indexOf(S.selDate),day=filt.filter(f=>f.date===S.selDate);
   const cm={};day.forEach(f=>{cm[f.cls]=(cm[f.cls]||0)+1;});
   const cd=CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]}));
   return`
@@ -401,98 +650,132 @@ function rDaily(){
   <button class="nbtn" data-action="next" ${di>=dates.length-1?'disabled':''}>&#8250;</button>
 </div>
 <div class="g2">
-  <div class="card"><div class="ctit">Heliographic Positions</div>
-    <div style="display:flex;justify-content:center">${solarDisk(day)}</div>
-    <div class="leg">${CO.filter(c=>day.some(f=>f.cls===c)).map(c=>`<div class="li"><div class="ld" style="background:${CC[c]};box-shadow:0 0 5px ${CC[c]}"></div>Class ${c} (${day.filter(f=>f.cls===c).length})</div>`).join('')}
-    ${!day.some(f=>f.pl)&&day.length?'<div style="font-size:10px;color:var(--muted);opacity:.6">No location data for this era</div>':''}</div>
+  <div class="card">
+    <div class="ctit">Heliographic Positions</div>
+    <div style="display:flex;justify-content:center">${solarDisk(day,260)}</div>
+    <div class="leg">
+      ${CO.filter(c=>day.some(f=>f.cls===c)).map(c=>`<div class="li"><div class="ld" style="background:${CC[c]};box-shadow:0 0 6px ${CC[c]}"></div>Class ${c} (${day.filter(f=>f.cls===c).length})</div>`).join('')}
+      ${!day.some(f=>f.pl)&&day.length?'<div style="font-size:11px;color:var(--muted);opacity:.6">No location data for this era</div>':''}
+    </div>
   </div>
-  <div class="card"><div class="ctit">Class Breakdown &middot; ${fmtDate(S.selDate)}</div>
-    ${day.length===0?'<div class="empty">No flare events on this date</div>':barChart(cd)+`<div class="sbs" style="grid-template-columns:repeat(${cd.length},1fr)">${cd.map(d=>`<div class="sb" style="background:${d.c}12;border:1px solid ${d.c}28"><div class="sbv" style="color:${d.c}">${d.v}</div><div class="sbl">Class ${d.l}</div></div>`).join('')}</div>`}
+  <div class="card">
+    <div class="ctit">Class Breakdown &middot; ${fmtDate(S.selDate)}</div>
+    ${day.length===0?'<div class="empty">No flare events on this date</div>':
+      barChart(cd,{xlabel:'GOES Class',ylabel:'Count'})+`
+    <div class="sbs" style="grid-template-columns:repeat(${cd.length},1fr)">
+      ${cd.map(d=>`<div class="sb" style="background:${d.c}14;border:1px solid ${d.c}30"><div class="sbv" style="color:${d.c}">${d.v}</div><div class="sbl">Class ${d.l}</div></div>`).join('')}
+    </div>`}
   </div>
 </div>
 <div class="card">
-  <div class="ctit">Flare Events &middot; ${S.selDate}<small>click row for details &middot; click region for all its flares</small></div>
+  <div class="ctit">Flare Events &middot; ${S.selDate}<small>click row for details &middot; click region number for all its flares</small></div>
   ${day.length===0?'<div class="empty">No flare events recorded on this date</div>':`
   <div class="ox"><table class="dt">
-    <thead><tr><th>Start UT</th><th>Peak UT</th><th>Class</th><th>Magnitude</th><th>Region</th><th>Location</th></tr></thead>
+    <thead><tr><th>Start UT</th><th>Peak UT</th><th>End UT</th><th>Class</th><th>Magnitude</th><th>Region</th><th>Location</th></tr></thead>
     <tbody>${day.map(f=>`<tr class="er" data-action="event-detail" data-ename="${f.ename||''}">
-      <td style="color:var(--txt)">${f.start}</td><td style="color:var(--muted)">${f.peak}</td>
-      <td>${bdg(f.cls)}</td><td style="color:${CC[f.cls]};font-weight:700">${f.cr||'--'}</td>
+      <td style="color:var(--txt)">${f.start}</td>
+      <td style="color:var(--acc)">${f.peak}</td>
+      <td style="color:var(--muted)">${f.stop||'--'}</td>
+      <td>${bdg(f.cls)}</td>
+      <td style="color:${CC[f.cls]};font-weight:700;font-size:14px">${f.cr||'--'}</td>
       <td>${arChip(f.region,'onclick="event.stopPropagation()"')}</td>
       <td style="color:${f.pl?'var(--txt)':'var(--muted)'}">${f.loc||'--'}</td>
     </tr>`).join('')}</tbody>
   </table></div>`}
-</div>`;}
+</div>`;
+}
 
-/* ── REGIONS ── */
+/* ===== REGIONS ===== */
 function rRegions(){
   const{ars,cm}=comp();const sk=S.arSort;
   const sorted=[...ars].filter(a=>a.region!=='--').sort((a,b)=>sk==='total'?b.total-a.total:sk==='X'?(b.X-a.X)||(b.M-a.M):b[sk]-a[sk]);
   return`
 <div class="g2">
-  <div class="card"><div class="ctit">Top Regions &mdash; By Class<small>click name to explore</small></div>
-    ${horizBar(sorted,{h:300})}<div class="leg">${CO.map(c=>`<div class="li"><div class="ld" style="background:${CC[c]}"></div>Class ${c}</div>`).join('')}</div>
+  <div class="card"><div class="ctit">Top Regions &mdash; By Class<small>click name to explore all flares</small></div>
+    ${horizBar(sorted,{h:320,xlabel:'Event Count'})}
+    <div class="leg">${CO.map(c=>`<div class="li"><div class="ld" style="background:${CC[c]}"></div>Class ${c}</div>`).join('')}</div>
   </div>
-  <div class="card"><div class="ctit">Overall Class Distribution</div>${barChart(CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]})))}</div>
+  <div class="card"><div class="ctit">Overall Class Distribution</div>
+    ${barChart(CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]})),{xlabel:'GOES Class',ylabel:'Event Count'})}
+  </div>
 </div>
 <div class="card">
-  <div class="mrow"><span class="ctit" style="margin:0;flex:1">Summary &middot; ${sorted.length} regions<small> click region to see all its flares</small></span>
+  <div class="mrow"><span class="ctit" style="margin:0;flex:1">All Regions &middot; ${sorted.length} total<small> click any region number to see its flares</small></span>
     <span class="mlbl">Sort:</span>
     ${['total','X','M'].map(k=>`<button class="cb${S.arSort===k?' on':''}" data-action="sort" data-v="${k}">${k==='total'?'Total':k+'-class'}</button>`).join('')}
   </div>
   <div class="ox"><table class="dt">
-    <thead><tr><th>#</th><th>Region</th><th>Total</th>${CO.map(c=>`<th style="color:${CC[c]}">${c}</th>`).join('')}<th>Days</th></tr></thead>
+    <thead><tr><th>#</th><th>Region</th><th>Total</th>${CO.map(c=>`<th style="color:${CC[c]}">${c}</th>`).join('')}<th>Active Days</th></tr></thead>
     <tbody>${sorted.slice(0,300).map((ar,i)=>`<tr>
-      <td style="color:var(--muted)">${i+1}</td><td>${arChip(ar.region)}</td>
-      <td style="color:var(--txt);font-weight:700;font-size:14px">${ar.total}</td>
-      ${CO.map(c=>`<td style="color:${ar[c]>0?CC[c]:'var(--bdr2)'};font-weight:${ar[c]>0?700:400}">${ar[c]||'--'}</td>`).join('')}
-      <td style="color:var(--muted)">${ar.activeDays}d</td>
+      <td style="color:var(--muted)">${i+1}</td>
+      <td>${arChip(ar.region)}</td>
+      <td style="color:var(--txt);font-weight:700;font-size:16px">${ar.total}</td>
+      ${CO.map(c=>`<td style="color:${ar[c]>0?CC[c]:'var(--bdr2)'};font-weight:${ar[c]>0?700:400};font-size:13px">${ar[c]||'--'}</td>`).join('')}
+      <td style="color:var(--muted)">${ar.activeDays}</td>
     </tr>`).join('')}</tbody>
   </table></div>
-</div>`;}
+</div>`;
+}
 
-/* ── STATS ── */
+/* ===== STATS ===== */
 function rStats(){
-  const{cm,filt,ph,ars,dc}=comp();const tot=filt.length,cd=CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]}));
-  const top=Object.entries(dc).sort((a,b)=>b[1]-a[1])[0],avg=Object.keys(dc).length?(tot/Object.keys(dc).length).toFixed(1):'--';
+  const{cm,filt,ph,ars,dc}=comp();
+  const tot=filt.length,cd=CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]}));
+  const top=Object.entries(dc).sort((a,b)=>b[1]-a[1])[0];
+  const avg=Object.keys(dc).length?(tot/Object.keys(dc).length).toFixed(1):'--';
   const txm=ars.filter(a=>a.region!=='--'&&(a.X+a.M)>0).sort((a,b)=>(b.X+b.M)-(a.X+a.M)).slice(0,20);
   return`
 <div class="g2">
-  <div class="card"><div class="ctit">Flare Class Distribution</div>${barChart(cd)}
+  <div class="card"><div class="ctit">Flare Class Distribution</div>
+    ${barChart(cd,{xlabel:'GOES Class',ylabel:'Event Count'})}
     <div class="sbs" style="grid-template-columns:repeat(${cd.length},1fr)">
-      ${CO.map(c=>{const n=cm[c]||0,p=tot?(n/tot*100).toFixed(1):'0';return n?`<div class="sb" style="background:${CC[c]}10;border:1px solid ${CC[c]}28"><div class="sbv" style="color:${CC[c]}">${n.toLocaleString()}</div><div class="sbl">Class ${c}</div><div class="sbp" style="color:${CC[c]}">${p}%</div></div>`:''}).join('')}
+      ${CO.map(c=>{const n=cm[c]||0,p=tot?(n/tot*100).toFixed(1):'0';return n?`<div class="sb" style="background:${CC[c]}12;border:1px solid ${CC[c]}30"><div class="sbv" style="color:${CC[c]}">${n.toLocaleString()}</div><div class="sbl">Class ${c}</div><div class="sbp" style="color:${CC[c]}">${p}%</div></div>`:''}).join('')}
     </div>
   </div>
-  <div class="card"><div class="ctit">Flares Per Day &mdash; Distribution</div>${barChart(ph.map(d=>({l:String(d.n),v:d.d,c:'#f97316'})),{h:180,vals:false})}
-    <div class="sbs" style="grid-template-columns:1fr 1fr 1fr;margin-top:12px">
-      ${[['Peak Day',top?`${top[1]} (${top[0]})`:'--','var(--acc)'],['Avg/Active Day',avg,'var(--txt)'],['Active Days',Object.keys(dc).length,'var(--txt)']].map(([l,v,c])=>`<div class="sb" style="background:var(--surf2);border:1px solid var(--bdr)"><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono)">${l}</div><div style="font-size:12px;font-weight:700;color:${c};font-family:var(--mono);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v}</div></div>`).join('')}
+  <div class="card"><div class="ctit">Flares Per Day &mdash; Histogram</div>
+    ${barChart(ph.map(d=>({l:String(d.n),v:d.d,c:'#f97316'})),{h:200,vals:false,xlabel:'Flares per Day',ylabel:'Number of Days'})}
+    <div class="sbs" style="grid-template-columns:1fr 1fr 1fr;margin-top:14px">
+      ${[['Peak Day',top?`${top[1]} (${top[0]})`:'--','var(--acc)'],['Avg / Active Day',avg,'var(--txt)'],['Active Days',Object.keys(dc).length,'var(--txt)']].map(([l,v,c])=>`
+      <div class="sb" style="background:var(--surf2);border:1px solid var(--bdr)">
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono)">${l}</div>
+        <div style="font-size:13px;font-weight:700;color:${c};font-family:var(--mono);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v}</div>
+      </div>`).join('')}
     </div>
   </div>
 </div>
-<div class="card s2"><div class="ctit">Top 20 Regions &mdash; X &amp; M Class<small>click name to explore</small></div>
-  ${horizBar(txm,{h:Math.min(300,txm.length*16+20),cats:['X','M']})}
+<div class="card s2"><div class="ctit">Top 20 Regions &mdash; X &amp; M Class Events<small>click name to explore</small></div>
+  ${horizBar(txm,{h:Math.min(320,txm.length*17+30),cats:['X','M'],xlabel:'Event Count',W:1100})}
   <div class="leg"><div class="li"><div class="ld" style="background:#ef4444"></div>X-class</div><div class="li"><div class="ld" style="background:#fb923c"></div>M-class</div></div>
-</div>`;}
+</div>`;
+}
 
-/* ── TIMELINE ── */
+/* ===== TIMELINE ===== */
 function rTimeline(){
   const{tl}=comp();
   const yrs={};tl.forEach(m=>{const y=m.month.slice(0,4);if(!yrs[y]){yrs[y]={year:y,X:0,M:0,C:0,B:0,A:0,total:0};}CO.forEach(c=>yrs[y][c]+=m[c]||0);yrs[y].total+=m.total;});
   const yr=Object.values(yrs).sort((a,b)=>a.year.localeCompare(b.year));
   return`
 <div class="card"><div class="ctit">Monthly Activity &mdash; Stacked by Class (${tl.length} months)</div>
-  ${stackedBar(tl,CO,{h:260})}<div class="leg">${CO.map(c=>`<div class="li"><div class="ld" style="background:${CC[c]}"></div>Class ${c}</div>`).join('')}</div>
+  ${stackedBar(tl,CO,{h:280})}
+  <div class="leg">${CO.map(c=>`<div class="li"><div class="ld" style="background:${CC[c]}"></div>Class ${c}</div>`).join('')}</div>
 </div>
-<div class="card"><div class="ctit">Monthly Total + Major Events Trend</div>
-  ${lineChart(tl,['total','X','M'],['#f97316','#ef4444','#fb923c'])}
+<div class="card"><div class="ctit">Monthly Total + Major Event Trends</div>
+  ${lineChart(tl,['total','X','M'],['#f97316','#ef4444','#fb923c'],{h:190})}
   <div class="leg"><div class="li"><div class="ld" style="background:#f97316"></div>Total</div><div class="li" style="opacity:.7"><div class="ld" style="background:#ef4444"></div>X-class</div><div class="li" style="opacity:.7"><div class="ld" style="background:#fb923c"></div>M-class</div></div>
 </div>
 ${yr.length>1?`<div class="card"><div class="ctit">Annual Summary</div>
-  <div class="ox"><table class="dt"><thead><tr><th>Year</th><th>Total</th>${CO.map(c=>`<th style="color:${CC[c]}">${c}</th>`).join('')}</tr></thead>
-  <tbody>${yr.map(r=>`<tr><td style="color:var(--acc2);font-weight:700">${r.year}</td><td style="color:var(--txt);font-weight:700;font-size:14px">${r.total.toLocaleString()}</td>${CO.map(c=>`<td style="color:${r[c]>0?CC[c]:'var(--bdr2)'};font-weight:${r[c]>0?700:400}">${r[c]||'--'}</td>`).join('')}</tr>`).join('')}</tbody>
-  </table></div></div>`:''}`;}
+  <div class="ox"><table class="dt">
+    <thead><tr><th>Year</th><th>Total</th>${CO.map(c=>`<th style="color:${CC[c]}">${c}</th>`).join('')}</tr></thead>
+    <tbody>${yr.map(r=>`<tr>
+      <td style="color:var(--acc2);font-weight:700;font-size:15px">${r.year}</td>
+      <td style="color:var(--txt);font-weight:700;font-size:16px">${r.total.toLocaleString()}</td>
+      ${CO.map(c=>`<td style="color:${r[c]>0?CC[c]:'var(--bdr2)'};font-weight:${r[c]>0?700:400};font-size:13px">${r[c]||'--'}</td>`).join('')}
+    </tr>`).join('')}</tbody>
+  </table></div>
+</div>`:''}`;
+}
 
-/* ── RENDER ── */
+/* ===== RENDER ===== */
 function render(){
   renderSbar();
   const tabs=document.getElementById('tabs'),cnt=document.getElementById('cnt'),mo=document.getElementById('moverlay');
@@ -502,7 +785,7 @@ function render(){
   else{mo.style.display='none';document.body.style.overflow='';}
 }
 
-/* ── AR SEARCH ── */
+/* ===== AR SEARCH ===== */
 function updateARSearch(q){
   const dd=document.getElementById('ardd');
   if(!q.trim()||!S.flares.length){dd.style.display='none';return;}
@@ -514,7 +797,7 @@ function updateARSearch(q){
   dd.style.display='block';
 }
 
-/* ── EVENTS ── */
+/* ===== EVENTS ===== */
 document.addEventListener('click',e=>{
   const opt=e.target.closest('[data-action="ar-search-pick"]');
   if(opt){go({arView:opt.dataset.ar,modal:null});document.getElementById('arsi').value='';document.getElementById('ardd').style.display='none';return;}
@@ -524,7 +807,7 @@ document.addEventListener('click',e=>{
   if(tb&&!S.arView){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));tb.classList.add('on');go({tab:tb.dataset.tab});return;}
   if(e.target===document.getElementById('moverlay')){go({modal:null});return;}
   const el=e.target.closest('[data-action]');if(!el)return;
-  const{action,v,ar,ename}=el.dataset;
+  const{action,v,ar,ename,url}=el.dataset;
   if(action==='prev'){const{dates}=comp();const i=dates.indexOf(S.selDate);if(i>0)go({selDate:dates[i-1]});}
   else if(action==='next'){const{dates}=comp();const i=dates.indexOf(S.selDate);if(i<dates.length-1)go({selDate:dates[i+1]});}
   else if(action==='sort')go({arSort:v});
@@ -533,6 +816,7 @@ document.addEventListener('click',e=>{
   else if(action==='close-modal')go({modal:null});
   else if(action==='event-detail'){const f=ename?S.flares.find(x=>x.ename===ename):null;if(f)go({modal:f});}
   else if(action==='home')go({tab:'daily',arView:null,modal:null});
+  else if(action==='open-lmsal'){const f=S.modal;if(f&&url)openLmsal(f,url);}
 });
 
 document.addEventListener('change',e=>{
@@ -540,58 +824,38 @@ document.addEventListener('change',e=>{
   else if(e.target.id==='fcls')go({fClass:e.target.value});
 });
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(S.modal)go({modal:null});else document.getElementById('ardd').style.display='none';}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(document.getElementById('lmsal-screen').style.display==='flex'){
+      document.getElementById('lmsal-screen').style.display='none';
+      document.getElementById('lmsal-frame').src='';
+      document.body.style.overflow='';
+    } else if(S.modal)go({modal:null});
+    else document.getElementById('ardd').style.display='none';
+  }
+});
+
+document.getElementById('lmsal-close').addEventListener('click',()=>{
+  document.getElementById('lmsal-screen').style.display='none';
+  document.getElementById('lmsal-frame').src='';
+  document.body.style.overflow='';
+  if(S.modal){document.getElementById('moverlay').style.display='flex';document.body.style.overflow='hidden';}
+});
+document.getElementById('lmsal-help-dismiss').addEventListener('click',()=>{
+  document.getElementById('lmsal-helpbanner').style.display='none';
+});
 
 document.getElementById('arsi').addEventListener('input',e=>updateARSearch(e.target.value));
-document.getElementById('arsi').addEventListener('keydown',e=>{if(e.key==='Enter'){const first=document.querySelector('[data-action="ar-search-pick"]');if(first){go({arView:first.dataset.ar,modal:null});e.target.value='';document.getElementById('ardd').style.display='none';}}});
+document.getElementById('arsi').addEventListener('keydown',e=>{
+  if(e.key==='Enter'){const first=document.querySelector('[data-action="ar-search-pick"]');if(first){go({arView:first.dataset.ar,modal:null});e.target.value='';document.getElementById('ardd').style.display='none';}}
+});
 
-/* ── LOAD FILE ── */
+/* ===== FILE LOADING ===== */
 function loadFile(file){
   const reader=new FileReader();
   reader.onload=ev=>{
     const parsed=parseCSV(ev.target.result);
     if(!parsed){showErr('Could not parse CSV file.');return;}
-    let{headers,rows}=parsed;let cm=detect(headers);
-    const ok=cm.date>=0||(cm.yr>=0&&cm.mo>=0&&cm.da>=0);
-    if(!ok&&rows.length){const cm2=detect(rows[0]);if(cm2.date>=0||(cm2.yr>=0&&cm2.mo>=0&&cm2.da>=0)){headers=rows[0];rows=rows.slice(1);cm=cm2;}}
-    const flares=[];
-    rows.forEach(row=>{
-      if(String(row[0]||'').startsWith(':'))return;
-      if(cm.type>=0){const t=String(row[cm.type]||'').toUpperCase().trim();if(t&&!['XRA','FLA',''].includes(t)&&!t.includes('X'))return;}
-      const date=parseDate(row,cm);if(!date)return;
-      const cr=cm.cls>=0?String(row[cm.cls]||'').trim():'';
-      const cls=getCls(cr);if(cls==='?'&&!cr)return;
-      const loc=cm.loc>=0?String(row[cm.loc]||'').trim():'';
-      const reg=cm.reg>=0?String(row[cm.reg]||'').replace(/^0+/,'').trim():'';
-      const start=cm.start>=0?fmtT(row[cm.start]):'--';
-      const peak=cm.peak>=0?fmtT(row[cm.peak]):'--';
-      const stop=cm.stop>=0?fmtT(row[cm.stop]):'--';
-      const ename=cm.ename>=0?String(row[cm.ename]||'').trim():'';
-      flares.push({date,cr,cls,loc,pl:parseLoc(loc),region:reg||'--',start,peak,stop,ename});
-    });
-    if(!flares.length){showErr('No flare events found. Check CSV column names.');return;}
-    flares.sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
-    document.getElementById('hsub').textContent=`${file.name} · ${flares.length.toLocaleString()} events`;
-    const dates=[...new Set(flares.map(f=>f.date))].sort();
-    Object.assign(S,{flares,selDate:dates[dates.length-1],fClass:'all',tab:'daily',modal:null,arView:null});
-    _c=null;
-    document.getElementById('upload').style.display='none';
-    document.getElementById('main').style.display='flex';
-    render();
-  };
-  reader.readAsText(file);
-}
-
-function showErr(msg){document.getElementById('uerr').innerHTML=`<div class="errmsg">${msg}</div>`;}
-
-const dz=document.getElementById('dz'),fi=document.getElementById('fi');
-
-// Auto-load CSV from GitHub on startup
-fetch('SWPC_flare_catalogue.csv')
-  .then(r=>r.text())
-  .then(txt=>{
-    const parsed=parseCSV(txt);
-    if(!parsed)return;
     let{headers,rows}=parsed;
     let cm=detect(headers);
     const ok=cm.date>=0||(cm.yr>=0&&cm.mo>=0&&cm.da>=0);
@@ -603,25 +867,44 @@ fetch('SWPC_flare_catalogue.csv')
       const date=parseDate(row,cm);if(!date)return;
       const cr=cm.cls>=0?String(row[cm.cls]||'').trim():'';
       const cls=getCls(cr);if(cls==='?'&&!cr)return;
-      const loc=cm.loc>=0?String(row[cm.loc]||'').trim():'';
-      const reg=cm.reg>=0?String(row[cm.reg]||'').replace(/^0+/,'').trim():'';
-      const start=cm.start>=0?fmtT(row[cm.start]):'--';
+      let loc=cm.loc>=0?String(row[cm.loc]||'').trim():'';
+      let reg=cm.reg>=0?String(row[cm.reg]||'').replace(/^0+/,'').trim():'';
+      // Split AR number embedded in location field, e.g. "N04E00 ( 4168 )"
+      const locAR=loc.match(/^([NS]\d+[EW]\d+)\s*\(\s*(\d+)\s*\)/i);
+      if(locAR){loc=locAR[1];if(!reg)reg=locAR[2];}
+      let start='--';
+      if(cm.start>=0){
+        const sv=String(row[cm.start]||'').trim();
+        if(sv.includes('T')){const tp=sv.split('T')[1];start=tp?tp.slice(0,5):'--';}
+        else{start=fmtT(sv);}
+      }
       const peak=cm.peak>=0?fmtT(row[cm.peak]):'--';
       const stop=cm.stop>=0?fmtT(row[cm.stop]):'--';
-      const ename=cm.ename>=0?String(row[cm.ename]||'').trim():'';
+      const ename=cm.ename>=0?String(row[cm.ename]||'').replace('.html','').trim():'';
       flares.push({date,cr,cls,loc,pl:parseLoc(loc),region:reg||'--',start,peak,stop,ename});
     });
-    if(!flares.length)return;
+    if(!flares.length){showErr('No flare events found. Check CSV column names.');return;}
     flares.sort((a,b)=>a.date.localeCompare(b.date)||a.start.localeCompare(b.start));
-    document.getElementById('hsub').textContent=`SWPC_flare_catalogue.csv · ${flares.length.toLocaleString()} events`;
+    document.getElementById('hsub').textContent=`${file.name} \u00b7 ${flares.length.toLocaleString()} events`;
     const dates=[...new Set(flares.map(f=>f.date))].sort();
     Object.assign(S,{flares,selDate:dates[dates.length-1],fClass:'all',tab:'daily',modal:null,arView:null});
     _c=null;
     document.getElementById('upload').style.display='none';
     document.getElementById('main').style.display='flex';
     render();
-  })
-  .catch(()=>{}); // silently fail — user can still upload manually
+  };
+  reader.readAsText(file);
+}
+
+// Auto-load CSV from same directory (works on GitHub Pages / any HTTP server)
+fetch('SWPC_flare_catalogue.csv')
+  .then(r=>{if(!r.ok)throw 0;return r.text();})
+  .then(txt=>loadFile(new File([txt],'SWPC_flare_catalogue.csv',{type:'text/csv'})))
+  .catch(()=>{});
+
+function showErr(msg){document.getElementById('uerr').innerHTML=`<div class="errmsg">${msg}</div>`;}
+
+const dz=document.getElementById('dz'),fi=document.getElementById('fi');
 dz.addEventListener('click',()=>fi.click());
 dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('over');});
 dz.addEventListener('dragleave',()=>dz.classList.remove('over'));
