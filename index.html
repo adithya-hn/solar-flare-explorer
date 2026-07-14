@@ -135,11 +135,14 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
 .mclose{background:transparent;border:1px solid var(--bdr2);color:var(--muted);width:28px;height:28px;border-radius:7px;font-size:14px;display:flex;align-items:center;justify-content:center}
 .mclose:hover{border-color:var(--acc);color:var(--txt)}.mbody{padding:16px}
 .mrow2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.mrow3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
 .mfield{padding:9px 12px;background:var(--surf2);border-radius:9px;border:1px solid var(--bdr)}
 .mflabel{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:3px}
 .mfval{font-size:13px;font-weight:600;font-family:var(--mono);color:var(--txt)}
 .evtlink{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.4);color:var(--acc);padding:11px 16px;border-radius:11px;font-size:13px;font-weight:600;text-decoration:none;width:100%;transition:all .15s;cursor:pointer}
 .evtlink:hover{background:rgba(249,115,22,.2);border-color:var(--acc)}
+.evtlink-sm{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.4);color:var(--acc);padding:9px 16px;border-radius:9px;font-size:12px;font-weight:600;white-space:nowrap;transition:all .15s;cursor:pointer;min-width:118px}
+.evtlink-sm:hover{background:rgba(249,115,22,.2);border-color:var(--acc)}
 .evtlink2{font-size:11px;color:var(--muted);text-decoration:none;text-align:center;display:block;margin-top:6px}
 .evtlink2:hover{color:var(--acc)}
 
@@ -148,6 +151,41 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
 #lmsal-left{width:360px;flex-shrink:0;overflow-y:auto;overflow-x:hidden;border-right:1px solid var(--bdr2);background:var(--surf)}
 #lmsal-left .mbody{padding:14px}
 #lmsal-left .mrow2{grid-template-columns:1fr 1fr}
+#lmsal-left .mrow3{grid-template-columns:1fr 1fr 1fr}
+
+/* OBSERVATION LOG */
+.obs-sec{margin-top:14px}
+.obs-sec-hdr{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.obs-card{background:var(--surf2);border:1px solid var(--bdr);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+.obs-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.obs-name{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.5px;color:var(--acc2)}
+.obs-win{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.obs-target{font-size:11px;color:var(--muted);margin-bottom:6px}
+.obs-caveat{font-size:10.5px;color:var(--muted);background:transparent;border:none;border-left:2px solid rgba(251,191,36,.55);padding:3px 0 3px 8px;margin-bottom:7px;line-height:1.4}
+.obs-confirmed{font-size:10.5px;color:var(--muted);background:transparent;border:none;border-left:2px solid rgba(74,222,128,.6);padding:3px 0 3px 8px;margin-bottom:7px;line-height:1.4}
+.obs-confirmed b,.obs-caveat b{color:var(--txt)}
+.obs-actions{display:flex;gap:8px;flex-wrap:wrap}
+.obs-btn{font-size:11px;font-family:var(--sans);padding:6px 11px;border-radius:7px;border:1px solid var(--bdr2);background:transparent;color:var(--muted)}
+.obs-btn:hover{border-color:var(--acc);color:var(--txt)}
+.obs-btn.confirm{border-color:rgba(74,222,128,.4);color:#4ade80}
+.obs-btn.unconfirm{border-color:rgba(239,68,68,.35);color:#ef4444}
+.obs-link{font-size:11px;color:var(--acc);text-decoration:none;padding:6px 11px;border:1px solid rgba(249,115,22,.4);border-radius:7px;background:rgba(249,115,22,.08)}
+.obs-link:hover{background:rgba(249,115,22,.18)}
+.obs-none{font-size:11px;color:var(--muted);font-style:italic;padding:4px 2px}
+
+/* OBS LOGS MANAGER MODAL */
+#oo-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,20,.72);z-index:900;align-items:center;justify-content:center;padding:20px}
+#oo-box{background:var(--surf);border:1px solid var(--bdr2);border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow-y:auto}
+.oo-hdr{padding:15px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surf);border-radius:16px 16px 0 0}
+.oo-hdr h3{font-size:14px;font-weight:700}
+.oo-body{padding:16px 18px}
+.oo-dz{background:var(--surf2);border:2px dashed var(--bdr2);border-radius:12px;padding:26px;text-align:center;cursor:pointer;margin-bottom:14px;transition:all .2s}
+.oo-dz:hover,.oo-dz.over{border-color:var(--acc);background:rgba(249,115,22,.05)}
+.oo-dz p{font-size:12px;color:var(--muted);margin-top:6px}
+.oo-schema{font-size:10.5px;color:var(--muted);font-family:var(--mono);line-height:1.7;background:var(--surf2);border-radius:9px;padding:10px 12px;margin-bottom:14px;overflow-x:auto;white-space:pre}
+.oo-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--surf2);border-radius:8px;margin-bottom:6px;font-size:12px}
+.oo-row b{color:var(--acc2);font-family:var(--mono)}
+.oo-foot{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 #lmsal-right{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
 #lmsal-topbar{padding:10px 16px;background:var(--surf);border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px;flex-shrink:0}
 #lmsal-url-txt{font-size:11px;color:var(--muted);font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
@@ -161,6 +199,11 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
 
 /* FOOTER */
 #footer{padding:12px 22px;border-top:1px solid var(--bdr);text-align:center;font-size:11px;color:var(--muted);font-family:var(--mono);line-height:1.7}
+.footer-ack{margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr);font-family:var(--sans);font-size:11px;color:var(--muted);max-width:640px;margin-left:auto;margin-right:auto}
+.footer-ack strong{color:var(--acc2)}
+.footer-caution{margin-top:7px;font-family:var(--sans);font-size:10.5px;color:var(--muted);opacity:.75;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6}
+.footer-caution a{color:var(--acc);text-decoration:none}
+.footer-caution a:hover{text-decoration:underline}
 
 @media(max-width:600px){
   #lmsal-screen{flex-direction:column}
@@ -168,6 +211,7 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
   .hright{width:100%}.cs,.cb{font-size:12px;padding:6px 11px}
   #cnt{padding:12px}.card{padding:14px}
   .mrow2{grid-template-columns:1fr}
+  .mrow3{grid-template-columns:1fr 1fr}
   .arsw input{width:130px}
 }
 </style>
@@ -193,6 +237,10 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
       <select class="cs" id="fcls">
         <option value="all">All Classes</option><option value="X">X-class</option><option value="M">M-class</option><option value="C">C-class</option><option value="B">B-class</option><option value="A">A-class</option>
       </select>
+      <select class="cs" id="obsf">
+        <option value="all">Any Observatory</option>
+      </select>
+      <button class="cb" id="bobs">&#128301; Obs Logs</button>
       <button class="cb" id="bnew">New File</button>
     </div>
   </div>
@@ -206,6 +254,8 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
   <div id="cnt"></div>
   <div id="footer">
     Data sources: <strong>SWPC/NOAA</strong> Solar Event Lists &nbsp;&middot;&nbsp; <strong>LMSAL</strong> SolarSoftWare Latest Events Archive
+    <div class="footer-ack">If you use data or figures from this archive, please acknowledge the <strong>Solar Group, Manipal Centre for Natural Sciences (MCNS), MAHE</strong>.</div>
+    <div class="footer-caution">&#9888;&nbsp; Built with the help of AI &mdash; individual flare cases are not manually verified in detail. For large-scale case studies, please carry out one additional independent verification step. Questions or issues: <a href="mailto:adithya.haravari@gmail.com">adithya.haravari@gmail.com</a></div>
   </div>
 </div>
 
@@ -229,13 +279,25 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
   </div>
 </div>
 
+<!-- OBSERVATORY LOGS MANAGER -->
+<div id="oo-overlay"><div id="oo-box">
+  <div class="oo-hdr"><h3>&#128301; Ground Observatory Logs</h3><button class="mclose" data-action="close-oo">&#10005;</button></div>
+  <div class="oo-body" id="oo-body"></div>
+</div></div>
+
 <input type="file" id="fi" accept=".csv,.txt" style="display:none">
+<input type="file" id="ofi" accept=".csv,.txt,.json" multiple style="display:none">
 
 <script>
 /* ===== CONSTANTS ===== */
 const CC={X:'#ef4444',M:'#fb923c',C:'#fbbf24',B:'#4ade80',A:'#22d3ee','?':'#8090b0'};
 const CO=['X','M','C','B','A'];
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/* ===== GROUND OBSERVATORY LOGS ===== */
+const OBS_KNOWN=['MAST','SST','DST','BBSO'];       // known observatory tags (extensible - any name in the CSV is accepted)
+const LS_OBS='sfa_obsLogs_v1';                      // localStorage: merged observation records
+const LS_CONF='sfa_obsConfirm_v1';                  // localStorage: confirmation flags (per obs-record + flare pairing)
 
 /* ===== CSV ===== */
 function parseCSV(txt){
@@ -287,13 +349,196 @@ function parseDate(row,cm){
 }
 
 /* ===== STATE ===== */
-const S={flares:[],tab:'daily',selDate:'',fClass:'all',arSort:'total',modal:null,arView:null};
+const S={flares:[],tab:'daily',selDate:'',fClass:'all',arSort:'total',modal:null,arView:null,obs:[],confirm:{},obsFilter:'all'};
 let _c=null;
+
+/* ===== OBSERVATORY LOG STORAGE ===== */
+function loadJSON(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback;}catch(e){return fallback;}}
+function saveJSON(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
+function loadObsStore(){S.obs=loadJSON(LS_OBS,[]);S.confirm=loadJSON(LS_CONF,{});}
+function saveObsStore(){saveJSON(LS_OBS,S.obs);}
+function saveConfirmStore(){saveJSON(LS_CONF,S.confirm);}
+
+/* Column detection for observatory log CSVs */
+function detectObs(h){
+  const a=h.map(x=>String(x).toLowerCase().replace(/[\s_#\/\-]/g,''));
+  const f=(...ks)=>a.findIndex(c=>ks.some(k=>c.includes(k)));
+  return{
+    obs:f('observatory','site'),
+    date:f('date'),
+    start:f('starttime','starttut','startut','start','begin'),
+    end:f('endtime','endut','end','stop'),
+    target:f('target','activeregion','noaanumber','noaaar','pointing','regionnum'),
+    link:f('link','url','archive'),
+    notes:f('notes','note','comment','remarks'),
+  };
+}
+const obsId=o=>`${o.observatory}_${o.date}_${o.start}_${o.end}`.replace(/[^a-zA-Z0-9_]/g,'');
+
+/* Flexible time extraction: finds an HH:MM inside a plain time, a "...T07:36:38.000" ISO
+   stamp, or a "2022-06-16 08:27:41" space-separated stamp. Falls back to digit-based fmtT. */
+function extractTime(v){
+  if(v===undefined||v===null||v==='')return'';
+  const m=String(v).match(/(\d{1,2}):(\d{2})(?::\d{2})?/);
+  if(m)return`${m[1].padStart(2,'0')}:${m[2]}`;
+  const t=fmtT(v);return t==='--'?'':t;
+}
+function extractDate(v){
+  if(!v)return'';
+  const m=String(v).match(/(\d{4})[-\/]?(\d{2})[-\/]?(\d{2})/);
+  return m?`${m[1]}-${m[2]}-${m[3]}`:'';
+}
+const ci=(hn,...ks)=>hn.findIndex(c=>ks.some(k=>c.includes(k)));
+const cell=(row,idx)=>idx>=0?String(row[idx]??'').trim():'';
+
+/* ===== SCHEMA DETECTION — recognizes the exact export formats from BBSO/GST,
+   MAST, SST and DST/NMSU so their logs can be dropped in unmodified. ===== */
+function detectObsSchema(hn){
+  if(hn.some(h=>h.includes('flareevent'))||hn.some(h=>h.includes('matchquality')))return'gst';
+  if(hn.some(h=>h.includes('locxarcsec'))||hn.some(h=>h.includes('gbandexpms')))return'mast';
+  if(hn.some(h=>h.includes('spectralline'))||hn.some(h=>h.includes('releasestatus'))||hn.some(h=>h.includes('polarimetric')))return'sst';
+  if(hn.some(h=>h.includes('rawtext'))||(hn.some(h=>h.includes('sourceurl'))&&hn.some(h=>h.includes('pointing'))))return'dst';
+  return'generic';
+}
+
+/* --- BBSO/GST: already pre-matched to flare events with a confirmation verdict --- */
+function parseGST(hn,rows){
+  const i={date:ci(hn,'gstdate','date'),start:ci(hn,'gstobsstart','obsstart','start'),end:ci(hn,'gstobsend','obsend','end'),
+    target:ci(hn,'gsttarget','target'),ar:ci(hn,'gstnoaaar','noaaar'),instr:ci(hn,'gstinstruments','instrument'),
+    observer:ci(hn,'gstobserver','observer'),link:ci(hn,'gsturl','url'),ename:ci(hn,'flareevent'),
+    match:ci(hn,'matchquality'),armatch:ci(hn,'noaaarmatch'),lead:ci(hn,'preflarelead','leadmin')};
+  const records=[],confirms=[];
+  rows.forEach(row=>{
+    const date=extractDate(cell(row,i.date)),start=extractTime(cell(row,i.start)),end=extractTime(cell(row,i.end));
+    if(!date||!start)return;
+    const arNum=cell(row,i.ar).replace(/\D/g,'');
+    const target=cell(row,i.target)||(arNum?`NOAA ${arNum}`:'');
+    const mq=cell(row,i.match),armatch=cell(row,i.armatch).toLowerCase(),lead=cell(row,i.lead);
+    const notes=[cell(row,i.instr),cell(row,i.observer)&&('Observer: '+cell(row,i.observer)),
+      mq&&('Catalog match: '+mq),lead&&('Pre-flare lead: '+lead+' min')].filter(Boolean).join(' \u00b7 ');
+    const rec={observatory:'BBSO',date,start,end,target,link:cell(row,i.link),notes};
+    records.push(rec);
+    const ename=cell(row,i.ename);
+    if(ename)confirms.push({cid:`${obsId(rec)}__${ename}`,confirmed:/^confirmed/i.test(mq)||armatch==='yes'});
+  });
+  return{records,confirms};
+}
+
+/* --- MAST: full ISO datetimes + arcsec pointing coords instead of an AR number --- */
+function parseMAST(hn,rows){
+  const i={date:ci(hn,'date'),start:ci(hn,'starttime','start'),end:ci(hn,'endtime','end'),
+    locx:ci(hn,'locxarcsec','locx'),locy:ci(hn,'locyarcsec','locy'),nimg:ci(hn,'nimages'),
+    gband:ci(hn,'gbandexpms'),halpha:ci(hn,'halphaexpms'),link:ci(hn,'url','link')};
+  const records=[];
+  rows.forEach(row=>{
+    let date=extractDate(cell(row,i.date));if(!date)date=extractDate(cell(row,i.start));
+    const start=extractTime(cell(row,i.start)),end=extractTime(cell(row,i.end));
+    if(!date||!start)return;
+    const x=cell(row,i.locx),y=cell(row,i.locy);
+    const target=(x||y)?`X ${x}\u2033, Y ${y}\u2033`:'';
+    const notes=[cell(row,i.nimg)&&(cell(row,i.nimg)+' images'),cell(row,i.gband)&&('G-band exp '+cell(row,i.gband)+'ms'),
+      cell(row,i.halpha)&&('H\u03b1 exp '+cell(row,i.halpha)+'ms')].filter(Boolean).join(' \u00b7 ');
+    records.push({observatory:'MAST',date,start,end,target,link:cell(row,i.link),notes});
+  });
+  return{records,confirms:[]};
+}
+
+/* --- SST: space-separated datetimes, no AR column, has release status --- */
+function parseSST(hn,rows){
+  const i={start:ci(hn,'starttime','start'),end:ci(hn,'endtime','end'),instr:ci(hn,'instrument'),
+    spec:ci(hn,'spectralline'),observer:ci(hn,'observer'),status:ci(hn,'releasestatus','status'),link:ci(hn,'url','link')};
+  const records=[];
+  rows.forEach(row=>{
+    const date=extractDate(cell(row,i.start)),start=extractTime(cell(row,i.start)),end=extractTime(cell(row,i.end));
+    if(!date||!start)return;
+    const instr=cell(row,i.instr);
+    const notes=[cell(row,i.spec),instr&&instr.toLowerCase()!=='all'&&instr,cell(row,i.observer)&&('Observer: '+cell(row,i.observer)),
+      cell(row,i.status)].filter(Boolean).join(' \u00b7 ');
+    records.push({observatory:'SST',date,start,end,target:'',link:cell(row,i.link),notes});
+  });
+  return{records,confirms:[]};
+}
+
+/* --- DST/NMSU: sparse logs, often missing exact start/end times --- */
+function parseDST(hn,rows){
+  const i={date:ci(hn,'date'),instr:ci(hn,'instrument'),target:ci(hn,'targetar','target'),
+    start:ci(hn,'starttimeut','starttime','start'),end:ci(hn,'endtimeut','endtime','end'),
+    pointing:ci(hn,'pointing'),link:ci(hn,'sourceurl','url'),raw:ci(hn,'rawtext')};
+  const records=[];
+  rows.forEach(row=>{
+    const date=extractDate(cell(row,i.date));if(!date)return;
+    let start=extractTime(cell(row,i.start)),end=extractTime(cell(row,i.end));
+    const notes=[cell(row,i.instr),cell(row,i.raw)];
+    if(!start){start='00:00';end=end||'23:59';notes.push('exact time not logged in source \u2014 date-only record');}
+    records.push({observatory:'DST',date,start,end,target:cell(row,i.target)||cell(row,i.pointing),
+      link:cell(row,i.link),notes:notes.filter(Boolean).join(' \u00b7 ')});
+  });
+  return{records,confirms:[]};
+}
+
+/* --- Generic fallback for any custom/simple log matching the documented schema --- */
+function parseGeneric(hn,rows,filenameHint){
+  const cm=detectObs(hn);
+  const hintObs=OBS_KNOWN.find(o=>filenameHint&&filenameHint.toUpperCase().includes(o))||'';
+  const records=[];
+  rows.forEach(row=>{
+    const observatory=cell(row,cm.obs)||hintObs;
+    const date=extractDate(cell(row,cm.date));
+    let start=extractTime(cell(row,cm.start)),end=extractTime(cell(row,cm.end));
+    if(!observatory||!date||!start)return;
+    records.push({observatory:observatory.toUpperCase(),date,start,end,target:cell(row,cm.target),
+      link:cell(row,cm.link),notes:cell(row,cm.notes)});
+  });
+  return{records,confirms:[]};
+}
+
+/* Dispatches to the right adapter based on the file's own headers. Returns {records,confirms}. */
+function parseObsCSV(text,filenameHint){
+  const parsed=parseCSV(text);
+  if(!parsed)return{records:[],confirms:[]};
+  const{headers,rows}=parsed;
+  const hn=headers.map(x=>String(x).toLowerCase().replace(/[\s_#\/\-]/g,''));
+  const schema=detectObsSchema(hn);
+  if(schema==='gst')return parseGST(hn,rows);
+  if(schema==='mast')return parseMAST(hn,rows);
+  if(schema==='sst')return parseSST(hn,rows);
+  if(schema==='dst')return parseDST(hn,rows);
+  return parseGeneric(hn,rows,filenameHint);
+}
+
+/* Merge new records into S.obs, de-duped/upserted by id. Returns count added/updated. */
+function mergeObsRecords(records){
+  let added=0,updated=0;
+  const idx={};S.obs.forEach((o,i)=>idx[obsId(o)]=i);
+  records.forEach(r=>{
+    const id=obsId(r);
+    if(id in idx){S.obs[idx[id]]=r;updated++;}
+    else{S.obs.push(r);idx[id]=S.obs.length-1;added++;}
+  });
+  saveObsStore();
+  return{added,updated};
+}
+
+/* Does observation window overlap a flare's active window (start..stop, or start..start+30 if no stop)? */
+function obsOverlapsFlare(o,f){
+  if(o.date!==f.date)return false;
+  const os=tMin(o.start),oe=o.end?tMin(o.end):24*60;
+  const fs=tMin(f.start),fe=f.stop&&f.stop!=='--'?tMin(f.stop):(fs!==null?fs+30:null);
+  if(os===null||fs===null)return false;
+  const oEnd=oe===null?24*60:oe, fEnd=fe===null?fs+30:fe;
+  return os<=fEnd&&oEnd>=fs;
+}
+function overlapsForFlare(f){return S.obs.filter(o=>obsOverlapsFlare(o,f));}
+function flareHasObs(f,observatory){
+  const ov=overlapsForFlare(f);
+  if(!ov.length)return false;
+  return observatory==='all'?true:ov.some(o=>o.observatory===observatory);
+}
 
 function comp(){
   if(_c)return _c;
-  const{flares,fClass}=S;
-  const filt=flares.filter(f=>fClass==='all'||f.cls===fClass);
+  const{flares,fClass,obsFilter}=S;
+  const filt=flares.filter(f=>(fClass==='all'||f.cls===fClass)&&(obsFilter==='all'||flareHasObs(f,obsFilter==='*any*'?'all':obsFilter)));
   const dates=[...new Set(filt.map(f=>f.date))].sort();
   const arm={};
   filt.forEach(f=>{if(!arm[f.region])arm[f.region]={region:f.region,total:0,X:0,M:0,C:0,B:0,A:0,'?':0,ds:new Set()};arm[f.region].total++;arm[f.region][f.cls]++;arm[f.region].ds.add(f.date);});
@@ -305,7 +550,7 @@ function comp(){
   _c={filt,dates,ars:ars.sort((a,b)=>b.total-a.total),cm,tl:Object.values(tm).sort((a,b)=>a.month.localeCompare(b.month)),ph:Object.entries(ph).sort((a,b)=>+a[0]-+b[0]).map(([n,d])=>({n:+n,d})),dc};
   return _c;
 }
-function go(u){const nr=['fClass','flares'].some(k=>k in u);Object.assign(S,u);if(nr)_c=null;render();}
+function go(u){const nr=['fClass','flares','obsFilter'].some(k=>k in u);Object.assign(S,u);if(nr)_c=null;render();}
 
 /* ===== CHARTS with axis labels ===== */
 function barChart(data,{h=200,vals=true,xlabel='',ylabel='Count'}={}){
@@ -508,32 +753,59 @@ function eventDetailHTML(f,forSplit=false){
   const col=CC[f.cls]||CC['?'],url=mkUrl(f);
   const dur=tMin(f.stop)!==null&&tMin(f.start)!==null?tMin(f.stop)-tMin(f.start):null;
   return`
-<div style="text-align:center;margin-bottom:10px">
-  <div style="font-size:11px;color:var(--muted);font-family:var(--mono)">${fmtDate(f.date)}</div>
-  <div style="font-size:32px;font-weight:700;color:${col};letter-spacing:-1px;margin-top:4px">${f.cr||f.cls}</div>
-  <div style="font-size:11px;color:${col};opacity:.65;margin-top:2px">GOES Class ${f.cls}</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px">
+  <div>
+    <div style="font-size:10px;color:var(--muted);font-family:var(--mono)">${fmtDate(f.date)}</div>
+    <div style="font-size:24px;font-weight:700;color:${col};letter-spacing:-1px;line-height:1.05;margin-top:2px">${f.cr||f.cls}<span style="font-size:10px;font-weight:600;color:${col};opacity:.65;letter-spacing:0;margin-left:6px">GOES ${f.cls}</span></div>
+  </div>
+  ${!forSplit&&url?`<button class="evtlink-sm" data-action="open-lmsal" data-url="${url}">&#128279; LMSAL &rarr;</button>`:''}
+  ${!forSplit&&!url?`<div style="color:var(--muted);font-size:11px">No event link</div>`:''}
 </div>
-${!forSplit&&url?`
-<button class="evtlink" data-action="open-lmsal" data-url="${url}">&#128279; Open Event Page on LMSAL &nbsp;&rarr;</button>
-<a class="evtlink2" href="${url}" target="_blank">or open in a new tab &nearr;</a>
-`:''}
-${!forSplit&&!url?`<div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">No event link available for this entry</div>`:''}
-<hr class="divider">
+<hr class="divider" style="margin:9px 0">
 ${tlBar(f)}
-<hr class="divider">
-<div class="mrow2">
+<hr class="divider" style="margin:9px 0">
+<div class="mrow3">
   <div class="mfield"><div class="mflabel">Start UT</div><div class="mfval">${f.start}</div></div>
   <div class="mfield"><div class="mflabel">Peak UT</div><div class="mfval" style="color:${col}">${f.peak}</div></div>
   <div class="mfield"><div class="mflabel">End UT</div><div class="mfval">${f.stop||'--'}</div></div>
-  ${dur!==null?`<div class="mfield"><div class="mflabel">Duration</div><div class="mfval">${dur} min</div></div>`:''}
-</div>
-<div class="mrow2">
+  <div class="mfield"><div class="mflabel">Duration</div><div class="mfval">${dur!==null?dur+' min':'--'}</div></div>
   <div class="mfield"><div class="mflabel">NOAA Region</div><div style="margin-top:5px">${arChip(f.region)}</div></div>
   <div class="mfield"><div class="mflabel">Location</div><div class="mfval" style="font-size:12px;margin-top:2px">${f.loc||'--'}</div></div>
 </div>
-<div style="display:flex;justify-content:center;margin:10px 0">${solarDisk(f.pl?[f]:[],150)}</div>
-<div style="text-align:center;font-size:10px;color:var(--muted);margin-top:8px;font-family:var(--mono);opacity:.7">
+${!forSplit?obsSectionHTML(f):''}
+<div style="display:flex;justify-content:center;margin:8px 0">${solarDisk(f.pl?[f]:[],116)}</div>
+${!forSplit&&url?`<a class="evtlink2" href="${url}" target="_blank">open LMSAL event page in a new tab &nearr;</a>`:''}
+<div style="text-align:center;font-size:10px;color:var(--muted);margin-top:6px;font-family:var(--mono);opacity:.7">
   Source: SWPC/NOAA Solar Event List &middot; LMSAL SolarSoftWare
+</div>`;
+}
+
+/* ===== GROUND OBSERVATORY OVERLAP SECTION (per flare) ===== */
+function obsSectionHTML(f){
+  const ov=overlapsForFlare(f).sort((a,b)=>a.observatory.localeCompare(b.observatory)||a.start.localeCompare(b.start));
+  const cards=ov.map(o=>{
+    const cid=`${obsId(o)}__${f.ename||f.date+f.start}`;
+    const confirmed=!!S.confirm[cid];
+    const arTxt=f.region&&f.region!=='--'?`AR ${f.region}`:'this event';
+    return`<div class="obs-card">
+  <div class="obs-top"><span class="obs-name">${o.observatory}</span><span class="obs-win">${o.start}&ndash;${o.end||'?'} UT</span></div>
+  ${o.target?`<div class="obs-target">Logged target: <b style="color:var(--txt)">${o.target}</b></div>`:''}
+  ${confirmed
+    ?`<div class="obs-confirmed">&#9989; Confirmed &mdash; ${o.observatory} pointing at ${arTxt} verified for this window.</div>`
+    :`<div class="obs-caveat">&#9888; Time windows overlap, but overlap alone does not confirm ${o.observatory} was pointed at ${arTxt}. Check the archive link, then mark confirmed if verified.</div>`}
+  ${o.notes?`<div class="obs-target" style="opacity:.8">${o.notes}</div>`:''}
+  <div class="obs-actions">
+    ${o.link?`<a class="obs-link" href="${o.link}" target="_blank">&#128279; Confirm observation location &rarr;</a>`:''}
+    ${confirmed
+      ?`<button class="obs-btn unconfirm" data-action="unconfirm-obs" data-cid="${cid}">Unmark confirmed</button>`
+      :`<button class="obs-btn confirm" data-action="confirm-obs" data-cid="${cid}">Mark as confirmed</button>`}
+  </div>
+</div>`;
+  }).join('');
+  return`<hr class="divider" style="margin:9px 0">
+<div class="obs-sec" style="margin-top:0">
+  <div class="obs-sec-hdr">&#128301; Ground Observatory Coverage</div>
+  ${cards||'<div class="obs-none">No MAST / SST / DST / BBSO logs overlap this event\u2019s time window.</div>'}
 </div>`;
 }
 
@@ -575,6 +847,37 @@ function openLmsal(f,url){
   */
   clearTimeout(window._lmsalBannerTimer);
   window._lmsalBannerTimer=setTimeout(()=>{ banner.style.display='flex'; }, 4000);
+}
+
+/* ===== OBS LOGS MANAGER MODAL BODY ===== */
+function rOOBody(){
+  const byObs={};S.obs.forEach(o=>{byObs[o.observatory]=(byObs[o.observatory]||0)+1;});
+  const rows=Object.entries(byObs).sort((a,b)=>b[1]-a[1])
+    .map(([o,n])=>`<div class="oo-row"><span><b>${o}</b></span><span>${n} logged window${n===1?'':'s'}</span></div>`).join('')
+    ||'<div class="obs-none">No observatory logs loaded yet.</div>';
+  return`
+<div class="oo-dz" id="oo-dz"><div class="dz-icon">&#128194;</div><h2 style="font-size:15px">Drop CSV logs or an exported observatory_logs.json</h2><p>BBSO/GST, MAST, SST, DST CSVs &middot; or a collaborator's exported JSON &middot; re-drop anytime to update</p></div>
+<div class="oo-schema">Formats are auto-detected from column headers &mdash; drop the raw exports as-is:
+&bull; BBSO/GST catalog (GST_Date, GST_Obs_Start_UTC, ..., Flare_Event, Match_Quality)
+  &rarr; already matched to a flare; Match_Quality "Confirmed..." auto-marks it confirmed
+&bull; MAST (Date, Start_time, End_time, Loc_X_arcsec, Loc_Y_arcsec, ...)
+&bull; SST (Start_time, End_time, Spectral_line, Release_status, ...)
+&bull; DST/NMSU (date, instrument, target_ar, start_time_ut, end_time_ut, ...)
+&bull; anything else falls back to a generic observatory,date,start_ut,end_ut,target,link,notes schema
+&bull; observatory_logs.json (from "Export merged JSON" below) carries confirmations too, so a collaborator's confirmed/unconfirmed marks come in with their data</div>
+<div class="obs-sec-hdr" style="margin-top:2px">Loaded logs</div>
+${rows}
+<div class="oo-foot">
+  <button class="obs-btn" data-action="oo-export">&#11015; Export merged JSON</button>
+  <button class="obs-btn unconfirm" data-action="oo-clear">Clear all logs</button>
+</div>
+<div class="hint" style="text-align:left;margin-top:14px;opacity:.85">
+  <b style="color:var(--txt)">Adding a contributor on GitHub:</b> this app has no server, so there's no live shared database &mdash; but two people can still work together through the repo itself:<br>
+  1&#41; Give them <b>write access to the repo</b> (or have them fork it), so they can add/edit CSV log files and open a pull request.<br>
+  2&#41; Or, they open this same site (locally or on the live GitHub Pages URL), drop in their observatory CSVs, click "Mark as confirmed" on whichever flares they've verified, then hit <b>"Export merged JSON"</b> above and send you (or PR) that file.<br>
+  3&#41; You drop their <code>observatory_logs.json</code> back in here (or commit it to the repo root) &mdash; their records and confirmations merge straight in, matched by observatory+date+start+end so nothing duplicates.<br>
+  Once <code>observatory_logs.json</code> is committed next to <code>index.html</code>, the site auto-loads it for every visitor on page load, so this becomes the shared source of truth even though the tool itself is fully static.
+</div>`;
 }
 
 /* ===== AR DETAIL VIEW ===== */
@@ -817,11 +1120,17 @@ document.addEventListener('click',e=>{
   else if(action==='event-detail'){const f=ename?S.flares.find(x=>x.ename===ename):null;if(f)go({modal:f});}
   else if(action==='home')go({tab:'daily',arView:null,modal:null});
   else if(action==='open-lmsal'){const f=S.modal;if(f&&url)openLmsal(f,url);}
+  else if(action==='close-oo')document.getElementById('oo-overlay').style.display='none';
+  else if(action==='confirm-obs'){S.confirm[el.dataset.cid]=true;saveConfirmStore();render();}
+  else if(action==='unconfirm-obs'){delete S.confirm[el.dataset.cid];saveConfirmStore();render();}
+  else if(action==='oo-export')exportObsJSON();
+  else if(action==='oo-clear'){if(confirm('Clear all loaded observatory logs from this browser? This cannot be undone (export a backup first if needed).')){S.obs=[];S.confirm={};saveObsStore();saveConfirmStore();refreshObsFilterOptions();document.getElementById('oo-body').innerHTML=rOOBody();wireOODropzone();_c=null;render();}}
 });
 
 document.addEventListener('change',e=>{
   if(e.target.id==='dpk'){const{dates}=comp();if(dates.includes(e.target.value))go({selDate:e.target.value});}
   else if(e.target.id==='fcls')go({fClass:e.target.value});
+  else if(e.target.id==='obsf')go({obsFilter:e.target.value});
 });
 
 document.addEventListener('keydown',e=>{
@@ -830,7 +1139,8 @@ document.addEventListener('keydown',e=>{
       document.getElementById('lmsal-screen').style.display='none';
       document.getElementById('lmsal-frame').src='';
       document.body.style.overflow='';
-    } else if(S.modal)go({modal:null});
+    } else if(document.getElementById('oo-overlay').style.display==='flex'){document.getElementById('oo-overlay').style.display='none';}
+    else if(S.modal)go({modal:null});
     else document.getElementById('ardd').style.display='none';
   }
 });
@@ -903,6 +1213,104 @@ fetch('SWPC_flare_catalogue.csv')
   .catch(()=>{});
 
 function showErr(msg){document.getElementById('uerr').innerHTML=`<div class="errmsg">${msg}</div>`;}
+
+/* ===== OBSERVATORY LOGS: filter select + manager modal wiring ===== */
+function refreshObsFilterOptions(){
+  const sel=document.getElementById('obsf');
+  const cur=S.obsFilter;
+  const present=[...new Set([...OBS_KNOWN,...S.obs.map(o=>o.observatory)])].sort();
+  sel.innerHTML=`<option value="all">Any Observatory</option><option value="*any*">Has Observation Log</option>`+
+    present.map(o=>`<option value="${o}">${o}</option>`).join('');
+  if([...sel.options].some(o=>o.value===cur))sel.value=cur;else{sel.value='all';S.obsFilter='all';}
+}
+
+function handleObsFiles(files){
+  let added=0,updated=0,confirmed=0,errs=0,readers=0;
+  const total=files.length;
+  Array.from(files).forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      readers++;
+      try{
+        if(/\.json$/i.test(file.name)){
+          const data=JSON.parse(ev.target.result);
+          const recs=Array.isArray(data)?data:(data.records||[]);
+          const confs=Array.isArray(data)?{}:(data.confirmations||{});
+          if(!recs.length)errs++;
+          const r=mergeObsRecords(recs);
+          added+=r.added;updated+=r.updated;
+          Object.entries(confs).forEach(([cid,val])=>{if(val){S.confirm[cid]=true;confirmed++;}});
+          if(Object.keys(confs).length)saveConfirmStore();
+        }else{
+          const{records,confirms}=parseObsCSV(ev.target.result,file.name);
+          if(!records.length)errs++;
+          const r=mergeObsRecords(records);
+          added+=r.added;updated+=r.updated;
+          confirms.forEach(c=>{if(c.confirmed){S.confirm[c.cid]=true;confirmed++;}});
+          if(confirms.length)saveConfirmStore();
+        }
+      }catch(e){errs++;}
+      if(readers===total){
+        refreshObsFilterOptions();
+        document.getElementById('oo-body').innerHTML=rOOBody();
+        wireOODropzone();
+        _c=null;render();
+        const note=document.createElement('div');
+        note.className=errs?'errmsg':'obs-confirmed';
+        note.style.marginTop='10px';
+        note.textContent=errs
+          ?`Loaded with ${errs} file(s) skipped (columns not recognized). ${added} added, ${updated} updated${confirmed?`, ${confirmed} confirmation(s) imported`:''}.`
+          :`${added} window(s) added, ${updated} updated${confirmed?`, ${confirmed} confirmation(s) imported`:''}.`;
+        document.getElementById('oo-body').appendChild(note);
+      }
+    };
+    reader.readAsText(file);
+  });
+}
+
+function exportObsJSON(){
+  const payload={version:1,exportedAt:new Date().toISOString(),records:S.obs,confirmations:S.confirm};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='observatory_logs.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+function wireOODropzone(){
+  const dz=document.getElementById('oo-dz');if(!dz)return;
+  dz.addEventListener('click',()=>document.getElementById('ofi').click());
+  dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('over');});
+  dz.addEventListener('dragleave',()=>dz.classList.remove('over'));
+  dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('over');if(e.dataTransfer.files.length)handleObsFiles(e.dataTransfer.files);});
+}
+
+document.getElementById('bobs').addEventListener('click',()=>{
+  document.getElementById('oo-body').innerHTML=rOOBody();
+  wireOODropzone();
+  document.getElementById('oo-overlay').style.display='flex';
+});
+document.getElementById('oo-overlay').addEventListener('click',e=>{
+  if(e.target.id==='oo-overlay')document.getElementById('oo-overlay').style.display='none';
+});
+document.getElementById('ofi').addEventListener('change',e=>{
+  if(e.target.files.length)handleObsFiles(e.target.files);
+  e.target.value='';
+});
+
+// Load any previously-saved observation logs from this browser + auto-fetch canonical files if present
+loadObsStore();
+refreshObsFilterOptions();
+['observatory_logs.json'].forEach(fn=>{
+  fetch(fn).then(r=>{if(!r.ok)throw 0;return r.json();}).then(data=>{
+    const recs=Array.isArray(data)?data:(data.records||[]);
+    const confs=Array.isArray(data)?{}:(data.confirmations||{});
+    if(recs.length){mergeObsRecords(recs);}
+    if(Object.keys(confs).length){Object.assign(S.confirm,confs);saveConfirmStore();}
+    if(recs.length||Object.keys(confs).length){refreshObsFilterOptions();_c=null;render();}
+  }).catch(()=>{});
+});
 
 const dz=document.getElementById('dz'),fi=document.getElementById('fi');
 dz.addEventListener('click',()=>fi.click());
