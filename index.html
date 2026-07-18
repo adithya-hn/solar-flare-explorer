@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='45%25' r='60%25'%3E%3Cstop offset='0%25' stop-color='%23fde68a'/%3E%3Cstop offset='55%25' stop-color='%23f97316'/%3E%3Cstop offset='100%25' stop-color='%23ea580c'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23161a26'/%3E%3Cg stroke='%23fbbf24' stroke-width='3' stroke-linecap='round'%3E%3Cline x1='32' y1='6' x2='32' y2='14'/%3E%3Cline x1='32' y1='50' x2='32' y2='58'/%3E%3Cline x1='6' y1='32' x2='14' y2='32'/%3E%3Cline x1='50' y1='32' x2='58' y2='32'/%3E%3Cline x1='13' y1='13' x2='18.5' y2='18.5'/%3E%3Cline x1='45.5' y1='45.5' x2='51' y2='51'/%3E%3Cline x1='51' y1='13' x2='45.5' y2='18.5'/%3E%3Cline x1='18.5' y1='45.5' x2='13' y2='51'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='14' fill='url(%23g)'/%3E%3C/svg%3E">
 <title>Solar Flare Archive Explorer</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -199,6 +200,11 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
 
 /* FOOTER */
 #footer{padding:12px 22px;border-top:1px solid var(--bdr);text-align:center;font-size:11px;color:var(--muted);font-family:var(--mono);line-height:1.7}
+.rangebar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;padding:10px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:12px}
+.rangebtns{display:flex;gap:6px;flex-wrap:wrap}
+.rangecustom{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.rangecustom input[type=date]{background:var(--surf);border:1px solid var(--bdr2);border-radius:7px;color:var(--txt);padding:5px 8px;font-size:12px;font-family:var(--mono)}
+.rangesum{margin-left:auto;font-size:11px;color:var(--muted);font-family:var(--mono);white-space:nowrap}
 .footer-ack{margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr);font-family:var(--sans);font-size:11px;color:var(--muted);max-width:640px;margin-left:auto;margin-right:auto}
 .footer-ack strong{color:var(--acc2)}
 .footer-caution{margin-top:7px;font-family:var(--sans);font-size:10.5px;color:var(--muted);opacity:.75;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6}
@@ -220,7 +226,7 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
 
 <!-- UPLOAD -->
 <div id="upload">
-  <div class="ut"><div class="sun-icon">&#9728;</div><h1>Solar Flare Archive</h1><p>SWPC &middot; GEV EVENT CATALOGUE EXPLORER</p></div>
+  <div class="ut"><div class="sun-icon"><svg width="60" height="60" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lg1" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#fde68a"/><stop offset="55%" stop-color="#f97316"/><stop offset="100%" stop-color="#ea580c"/></radialGradient></defs><g stroke="#fbbf24" stroke-width="3" stroke-linecap="round"><line x1="32" y1="4" x2="32" y2="14"/><line x1="32" y1="50" x2="32" y2="60"/><line x1="4" y1="32" x2="14" y2="32"/><line x1="50" y1="32" x2="60" y2="32"/><line x1="11" y1="11" x2="18.5" y2="18.5"/><line x1="45.5" y1="45.5" x2="53" y2="53"/><line x1="53" y1="11" x2="45.5" y2="18.5"/><line x1="18.5" y1="45.5" x2="11" y2="53"/></g><circle cx="32" cy="32" r="14" fill="url(#lg1)"/></svg></div><h1>Solar Flare Archive</h1><p>SWPC &middot; GEV EVENT CATALOGUE EXPLORER</p></div>
   <div class="dz" id="dz"><div class="dz-icon">&#128194;</div><h2>Drop your SWPC CSV catalogue here</h2><p>or tap to browse</p><div id="uerr"></div></div>
   <div class="hint">SWPC GEV flare catalogue &middot; Fully offline &mdash; no internet required</div>
 </div>
@@ -229,7 +235,7 @@ select,input{font-family:inherit}select{-webkit-appearance:none;appearance:none}
 <div id="main">
   <div id="hdr">
     <div class="htitle" data-action="home">
-      <span style="font-size:22px;filter:drop-shadow(0 0 8px rgba(249,115,22,.5))">&#9728;</span>
+      <span style="display:flex;filter:drop-shadow(0 0 8px rgba(249,115,22,.5))"><svg width="26" height="26" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lg2" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#fde68a"/><stop offset="55%" stop-color="#f97316"/><stop offset="100%" stop-color="#ea580c"/></radialGradient></defs><g stroke="#fbbf24" stroke-width="3" stroke-linecap="round"><line x1="32" y1="4" x2="32" y2="14"/><line x1="32" y1="50" x2="32" y2="60"/><line x1="4" y1="32" x2="14" y2="32"/><line x1="50" y1="32" x2="60" y2="32"/><line x1="11" y1="11" x2="18.5" y2="18.5"/><line x1="45.5" y1="45.5" x2="53" y2="53"/><line x1="53" y1="11" x2="45.5" y2="18.5"/><line x1="18.5" y1="45.5" x2="11" y2="53"/></g><circle cx="32" cy="32" r="14" fill="url(#lg2)"/></svg></span>
       <div><h1>Solar Flare Archive</h1><div class="hsub" id="hsub">&mdash;</div></div>
     </div>
     <div class="hright">
@@ -349,8 +355,9 @@ function parseDate(row,cm){
 }
 
 /* ===== STATE ===== */
-const S={flares:[],tab:'daily',selDate:'',fClass:'all',arSort:'total',modal:null,arView:null,obs:[],confirm:{},obsFilter:'all'};
+const S={flares:[],tab:'daily',selDate:'',fClass:'all',arSort:'total',modal:null,arView:null,obs:[],confirm:{},obsFilter:'all',range:'all',rangeFrom:'',rangeTo:''};
 let _c=null;
+let _cr=null;
 
 /* ===== OBSERVATORY LOG STORAGE ===== */
 function loadJSON(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback;}catch(e){return fallback;}}
@@ -535,10 +542,7 @@ function flareHasObs(f,observatory){
   return observatory==='all'?true:ov.some(o=>o.observatory===observatory);
 }
 
-function comp(){
-  if(_c)return _c;
-  const{flares,fClass,obsFilter}=S;
-  const filt=flares.filter(f=>(fClass==='all'||f.cls===fClass)&&(obsFilter==='all'||flareHasObs(f,obsFilter==='*any*'?'all':obsFilter)));
+function aggregate(filt){
   const dates=[...new Set(filt.map(f=>f.date))].sort();
   const arm={};
   filt.forEach(f=>{if(!arm[f.region])arm[f.region]={region:f.region,total:0,X:0,M:0,C:0,B:0,A:0,'?':0,ds:new Set()};arm[f.region].total++;arm[f.region][f.cls]++;arm[f.region].ds.add(f.date);});
@@ -547,10 +551,54 @@ function comp(){
   const tm={};filt.forEach(f=>{const mo=f.date.slice(0,7);if(!tm[mo])tm[mo]={month:mo,X:0,M:0,C:0,B:0,A:0,total:0};tm[mo][f.cls]++;tm[mo].total++;});
   const dc={};filt.forEach(f=>{dc[f.date]=(dc[f.date]||0)+1;});
   const ph={};Object.values(dc).forEach(n=>{ph[n]=(ph[n]||0)+1;});
-  _c={filt,dates,ars:ars.sort((a,b)=>b.total-a.total),cm,tl:Object.values(tm).sort((a,b)=>a.month.localeCompare(b.month)),ph:Object.entries(ph).sort((a,b)=>+a[0]-+b[0]).map(([n,d])=>({n:+n,d})),dc};
+  return{filt,dates,ars:ars.sort((a,b)=>b.total-a.total),cm,tl:Object.values(tm).sort((a,b)=>a.month.localeCompare(b.month)),ph:Object.entries(ph).sort((a,b)=>+a[0]-+b[0]).map(([n,d])=>({n:+n,d})),dc};
+}
+function comp(){
+  if(_c)return _c;
+  const{flares,fClass,obsFilter}=S;
+  const filt=flares.filter(f=>(fClass==='all'||f.cls===fClass)&&(obsFilter==='all'||flareHasObs(f,obsFilter==='*any*'?'all':obsFilter)));
+  _c=aggregate(filt);
   return _c;
 }
-function go(u){const nr=['fClass','flares','obsFilter'].some(k=>k in u);Object.assign(S,u);if(nr)_c=null;render();}
+function go(u){
+  const bigChange=['fClass','flares','obsFilter'].some(k=>k in u);
+  const rangeChange=['range','rangeFrom','rangeTo'].some(k=>k in u);
+  Object.assign(S,u);
+  if(bigChange){_c=null;_cr=null;}else if(rangeChange){_cr=null;}
+  render();
+}
+
+/* ===== TIME RANGE (Regions/Stats/Timeline summaries) ===== */
+const RANGE_PRESETS=[['all','All time'],['30d','30d'],['90d','90d'],['180d','6mo'],['365d','1yr'],['custom','Custom']];
+function rangeBounds(){
+  if(S.range==='all')return{from:'',to:''};
+  if(S.range==='custom')return{from:S.rangeFrom||'',to:S.rangeTo||''};
+  const dates=S.flares.map(f=>f.date);
+  if(!dates.length)return{from:'',to:''};
+  const maxDate=dates.reduce((a,b)=>b>a?b:a);
+  const days={'30d':30,'90d':90,'180d':180,'365d':365}[S.range];
+  if(!days)return{from:'',to:''};
+  const d=new Date(maxDate+'T00:00:00Z');d.setUTCDate(d.getUTCDate()-days);
+  return{from:d.toISOString().slice(0,10),to:maxDate};
+}
+function compRange(){
+  if(_cr)return _cr;
+  const{from,to}=rangeBounds();
+  const base=comp();
+  const filt=base.filt.filter(f=>(!from||f.date>=from)&&(!to||f.date<=to));
+  _cr={...aggregate(filt),from,to};
+  return _cr;
+}
+function rRangeBar(){
+  const{filt,from,to}=compRange();
+  const label=S.range==='all'?'entire archive':S.range==='custom'?(from&&to?`${from} \u2192 ${to}`:from?`since ${from}`:to?`through ${to}`:'select a range'):{'30d':'last 30 days','90d':'last 90 days','180d':'last 6 months','365d':'last year'}[S.range];
+  return`
+<div class="rangebar">
+  <div class="rangebtns">${RANGE_PRESETS.map(([k,l])=>`<button class="cb${S.range===k?' on':''}" data-action="range" data-v="${k}">${l}</button>`).join('')}</div>
+  ${S.range==='custom'?`<div class="rangecustom"><input type="date" id="rfrom" value="${S.rangeFrom||''}"><span>&rarr;</span><input type="date" id="rto" value="${S.rangeTo||''}"></div>`:''}
+  <div class="rangesum">${filt.length.toLocaleString()} flares &middot; ${label}</div>
+</div>`;
+}
 
 /* ===== CHARTS with axis labels ===== */
 function barChart(data,{h=200,vals=true,xlabel='',ylabel='Count'}={}){
@@ -773,7 +821,7 @@ ${tlBar(f)}
   <div class="mfield"><div class="mflabel">Location</div><div class="mfval" style="font-size:12px;margin-top:2px">${f.loc||'--'}</div></div>
 </div>
 ${!forSplit?obsSectionHTML(f):''}
-<div style="display:flex;justify-content:center;margin:8px 0">${solarDisk(f.pl?[f]:[],116)}</div>
+<div style="display:flex;justify-content:center;margin:8px 0">${solarDisk(f.pl?[f]:[],130)}</div>
 ${!forSplit&&url?`<a class="evtlink2" href="${url}" target="_blank">open LMSAL event page in a new tab &nearr;</a>`:''}
 <div style="text-align:center;font-size:10px;color:var(--muted);margin-top:6px;font-family:var(--mono);opacity:.7">
   Source: SWPC/NOAA Solar Event List &middot; LMSAL SolarSoftWare
@@ -990,9 +1038,10 @@ function rDaily(){
 
 /* ===== REGIONS ===== */
 function rRegions(){
-  const{ars,cm}=comp();const sk=S.arSort;
+  const{ars,cm}=compRange();const sk=S.arSort;
   const sorted=[...ars].filter(a=>a.region!=='--').sort((a,b)=>sk==='total'?b.total-a.total:sk==='X'?(b.X-a.X)||(b.M-a.M):b[sk]-a[sk]);
   return`
+${rRangeBar()}
 <div class="g2">
   <div class="card"><div class="ctit">Top Regions &mdash; By Class<small>click name to explore all flares</small></div>
     ${horizBar(sorted,{h:320,xlabel:'Event Count'})}
@@ -1022,12 +1071,13 @@ function rRegions(){
 
 /* ===== STATS ===== */
 function rStats(){
-  const{cm,filt,ph,ars,dc}=comp();
+  const{cm,filt,ph,ars,dc}=compRange();
   const tot=filt.length,cd=CO.filter(c=>cm[c]).map(c=>({l:c,v:cm[c],c:CC[c]}));
   const top=Object.entries(dc).sort((a,b)=>b[1]-a[1])[0];
   const avg=Object.keys(dc).length?(tot/Object.keys(dc).length).toFixed(1):'--';
   const txm=ars.filter(a=>a.region!=='--'&&(a.X+a.M)>0).sort((a,b)=>(b.X+b.M)-(a.X+a.M)).slice(0,20);
   return`
+${rRangeBar()}
 <div class="g2">
   <div class="card"><div class="ctit">Flare Class Distribution</div>
     ${barChart(cd,{xlabel:'GOES Class',ylabel:'Event Count'})}
@@ -1054,10 +1104,11 @@ function rStats(){
 
 /* ===== TIMELINE ===== */
 function rTimeline(){
-  const{tl}=comp();
+  const{tl}=compRange();
   const yrs={};tl.forEach(m=>{const y=m.month.slice(0,4);if(!yrs[y]){yrs[y]={year:y,X:0,M:0,C:0,B:0,A:0,total:0};}CO.forEach(c=>yrs[y][c]+=m[c]||0);yrs[y].total+=m.total;});
   const yr=Object.values(yrs).sort((a,b)=>a.year.localeCompare(b.year));
   return`
+${rRangeBar()}
 <div class="card"><div class="ctit">Monthly Activity &mdash; Stacked by Class (${tl.length} months)</div>
   ${stackedBar(tl,CO,{h:280})}
   <div class="leg">${CO.map(c=>`<div class="li"><div class="ld" style="background:${CC[c]}"></div>Class ${c}</div>`).join('')}</div>
@@ -1114,6 +1165,7 @@ document.addEventListener('click',e=>{
   if(action==='prev'){const{dates}=comp();const i=dates.indexOf(S.selDate);if(i>0)go({selDate:dates[i-1]});}
   else if(action==='next'){const{dates}=comp();const i=dates.indexOf(S.selDate);if(i<dates.length-1)go({selDate:dates[i+1]});}
   else if(action==='sort')go({arSort:v});
+  else if(action==='range'){if(v==='custom')go({range:'custom'});else go({range:v,rangeFrom:'',rangeTo:''});}
   else if(action==='ar-view')go({arView:ar,modal:null});
   else if(action==='ar-back')go({arView:null,tab:'regions'});
   else if(action==='close-modal')go({modal:null});
@@ -1131,6 +1183,8 @@ document.addEventListener('change',e=>{
   if(e.target.id==='dpk'){const{dates}=comp();if(dates.includes(e.target.value))go({selDate:e.target.value});}
   else if(e.target.id==='fcls')go({fClass:e.target.value});
   else if(e.target.id==='obsf')go({obsFilter:e.target.value});
+  else if(e.target.id==='rfrom')go({range:'custom',rangeFrom:e.target.value});
+  else if(e.target.id==='rto')go({range:'custom',rangeTo:e.target.value});
 });
 
 document.addEventListener('keydown',e=>{
